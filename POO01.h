@@ -31,7 +31,7 @@ private:
 
 Numero::Numero(int paramNumero) // Constructor
 {
-    this->elNumero = paramNumero; // Atributo elNumero = al parametro paramNumero
+    this->elNumero = paramNumero; // Atributo elNumero = al parámetro paramNumero
     printf("\e[0;37mConstructor ... %d\e[0m\n", elNumero);
 }
 
@@ -47,7 +47,7 @@ int Numero::obtenerNumero() // Metodo
 
 void Numero::configurarNumero(int numero)
 {
-    elNumero = numero; // Atributo elNumero = al parametro numero, sin usar this
+    elNumero = numero; // Atributo elNumero = al parámetro numero, sin usar this
 }
 
 void Numero::pintar()
