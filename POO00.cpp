@@ -1,21 +1,23 @@
 /*
     José Juan Ojeda Granados, 10-01-2022
-    Repaso pasando parámetros a funciones por medio de punteros memoria
+    Primera aproximación a POO desde CPP
 
-    Manejo básico de punteros a zonas de memoria
-     * Para declarar variable apuntadora.
-     * Para desreferenciar, acceder directamente al contenido de una ubicación de memoria 
-       almacenada en una variable puntero.
-     & Para mostrar la dirección de memoria de cualquier variable.
+    Creación básica de una clase llamada Numero
+        * Definición atributos/características
+        * Definición de métodos
+        * Definición de constructor
+        * Instanciación de dos objetos "Primer" y por puntero a HEAP
 
     Compilar con -lstdc++
-    gcc Repa02.cpp -o Repa02 -lstdc++
+    gcc POO00.cpp -o POO00 -lstdc++
 */
 #include <iostream>
 
 class Numero
 {
 public:
+    Numero();
+    ~Numero();
     int obtenerNumero();
     void configurarNumero(int numero);
     void pintar();
@@ -24,7 +26,17 @@ private:
     int elNumero;
 };
 
-int Numero::obtenerNumero()
+Numero::Numero() // Constructor
+{
+    printf("\e[0;37mConstructor ...\e[0m\n");
+}
+
+Numero::~Numero() // Destructor
+{
+    printf("\e[0;37mDestructor ...\e[0m\n");
+}
+
+int Numero::obtenerNumero() // Metodo
 {
     return elNumero;
 }
@@ -36,15 +48,43 @@ void Numero::configurarNumero(int numero)
 
 void Numero::pintar()
 {
-    std::cout << elNumero + elNumero << std::endl;
+    printf("\e[0;36mEl número %d\e[0m\n", elNumero);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    system("clear");
+    printf("\n\t\e[0;33mBloque main\e[0m\n");
+
+    // Crea el objeto Primer y lanza el constructor, se cierra con el destructor automático
     Numero Primer;
+    printf("Se crea el objeto Primer, se almacena el número 10 y se muestra\n");
     Primer.configurarNumero(10);
     Primer.pintar();
 
-    std::cout << Primer.obtenerNumero() << std::endl;
+    printf("\nSe crea el objeto por puntero en heap, y se muestra la dirección\n");
+    // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
+    Numero *pNumero = new Numero;
+    printf("pNumero\t\t\e[0;33m%p\e[0m\n", pNumero);
+
+    printf("Se llama al método guardar numero por puntero y se almacena el 20, se muestra\n");
+    (*pNumero).configurarNumero(20);
+    (*pNumero).pintar();
+    /*
+    El operador flecha (->) se utiliza cuando se dispone de la dirección de un
+    objeto (en el puntero correspondiente), en lugar del nombre del objeto.
+    Es más habitual utilizar el operador flecha que el operador punto.
+    La sintaxis (*puntero).miembro es incómoda de leer y escribir, así que usa la
+    sintaxis flecha (->) de manera que puntero->miembro es equivalente a (*puntero).miembro.
+    Ambas opciones son validas pero se aconseja usar el operador flecha (->).
+    */
+    pNumero->configurarNumero(40);
+    pNumero->pintar();
+
+    // destructor del constructor lanzado al crear *pNumero
+    pNumero = nullptr;
+    delete pNumero;
+
+    // ultimo destructor automático
     return 0;
 }
