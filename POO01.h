@@ -20,8 +20,8 @@ class Numero
 public:
     Numero(int elNumero);
     ~Numero();
-    int obtenerNumero();
-    void configurarNumero(int numero);
+    int get_Numero();
+    void set_Numero(int numero);
     void pintar();
 
 private:
@@ -40,12 +40,12 @@ Numero::~Numero() // Destructor
     printf("\e[0;37mDestructor ...\e[0m\n");
 }
 
-int Numero::obtenerNumero() // Metodo
+int Numero::get_Numero() // Metodo
 {
     return elNumero;
 }
 
-void Numero::configurarNumero(int numero)
+void Numero::set_Numero(int numero)
 {
     elNumero = numero; // Atributo elNumero = al parámetro numero, sin usar this
 }

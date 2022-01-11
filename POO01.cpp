@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
     Numero Segun(2);
     printf("Se modifica el dato de Primer y Según, a 10 y 20 respectivamente\n");
     printf("Y se muestra con el método pintar()\n");
-    Primer.configurarNumero(10);
+    Primer.set_Numero(10);
     Primer.pintar();
-    Segun.configurarNumero(20);
+    Segun.set_Numero(20);
     Segun.pintar();
 
     printf("\nSe crea el objeto por puntero en heap, se muestra la dirección\n");
@@ -42,12 +42,12 @@ int main(int argc, char *argv[])
     Numero *pNumero1 = new Numero(5);
     printf("pNumero1\t\t\e[0;33m%p\e[0m\n", pNumero1);
 
-    printf("Se llama al método configurarNumero por puntero, se almacena el 40, se muestra\n");
-    (*pNumero0).configurarNumero(40);
+    printf("Se llama al método set_Numero por puntero, se almacena el 40, se muestra\n");
+    (*pNumero0).set_Numero(40);
     (*pNumero0).pintar();
 
     printf("Se muestra el ultimo objeto creado sin modificar su dato\n");
-    // pNumero1->configurarNumero(50);
+    // pNumero1->set_Numero(50);
     pNumero1->pintar();
 
     // destructor del constructor lanzado al crear *pNumero
