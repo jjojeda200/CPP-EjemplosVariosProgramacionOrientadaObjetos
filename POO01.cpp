@@ -18,22 +18,22 @@ int main(int argc, char *argv[])
 {
     system("clear");
 
-    printf("Se crean objetos Primer y Segun, se almacena 1 y 2 respectivamente\n");
-    printf("Y se muestran en el contructor\n");
+    printf("Se crean objetos Primer y Según, se almacena 1 y 2 respectivamente\n");
+    printf("Y se muestran en el constructor\n");
     // Crea el objeto Primer y lanza el constructor, se cierra con el destructor automático
     // Se almacena un valor inicial para Primer de 1
     Numero Primer(1);
-    // Se almacena un valor inicial para Segun de 2
+    // Se almacena un valor inicial para Según de 2
     Numero Segun(2);
-    printf("Se modifica el dato de Primer y Segun, a 10 y 20 respectivamente\n");
-    printf("Y se muestra con el metodo pintar()\n");
+    printf("Se modifica el dato de Primer y Según, a 10 y 20 respectivamente\n");
+    printf("Y se muestra con el método pintar()\n");
     Primer.configurarNumero(10);
     Primer.pintar();
     Segun.configurarNumero(20);
     Segun.pintar();
 
     printf("\nSe crea el objeto por puntero en heap, se muestra la dirección\n");
-    printf("Se les asigna un dato inicial y se muestran en el contructor\n");
+    printf("Se les asigna un dato inicial y se muestran en el constructor\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
     // Se almacena un valor inicial 
     Numero *pNumero0 = new Numero(4);
