@@ -4,8 +4,8 @@
 
 10-01-2022
 
-POO00.cpp:  Primera aproximación a POO desde CPP
+POO00.cpp: Primera aproximación a POO desde CPP
 
 11-01-2022
 
-POO01.cpp:
+POO01.cpp: POO desde CPP Clase separada en archivos de encabezado y +++

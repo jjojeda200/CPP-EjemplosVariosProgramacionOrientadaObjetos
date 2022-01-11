@@ -1,6 +1,6 @@
 /*
     José Juan Ojeda Granados, 11-01-2022
-    Primera aproximación a POO desde CPP
+    POO desde CPP Clase separada en archivos de encabezado
 
     Creación básica de una clase llamada Numero
         * Definición atributos/características
