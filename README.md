@@ -1,6 +1,6 @@
 # José Juan Ojeda Granados
 # CPP-EjemplosVariosProgramacionOrientadaObjetos
-# Ejercicios básicos diversos en CPP en torno a POO
+# Ejercicios básicos diversos en CPP entorno a POO
 
 10-01-2022
 
