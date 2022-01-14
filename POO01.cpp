@@ -23,8 +23,10 @@ int main(int argc, char *argv[])
     // Crea el objeto Primer y lanza el constructor, se cierra con el destructor automático
     // Se almacena un valor inicial para Primer de 1
     Numero Primer(1);
+    Primer.pintar();
     // Se almacena un valor inicial para Según de 2
     Numero Segun(2);
+    Segun.pintar();
     printf("Se modifica el dato de Primer y Según, a 10 y 20 respectivamente\n");
     printf("Y se muestra con el método pintar()\n");
     Primer.set_Numero(10);

@@ -22,11 +22,16 @@ public:
     ~Numero();
     int get_Numero();
     void set_Numero(int numero);
-    void pintar();
+
+    // void Numero::pintar() // Al incluirse dentro de bloque de la clase, ya no hace falta referenciarla
+    void pintar()
+    {
+        printf("\e[0;36mEl número %d\e[0m\n", elNumero);
+    }
 
 private:
     int elNumero;
-    //string elNombre;
+    // string elNombre;
 };
 
 Numero::Numero(int paramNumero) // Constructor
@@ -48,9 +53,4 @@ int Numero::get_Numero() // Metodo
 void Numero::set_Numero(int numero)
 {
     elNumero = numero; // Atributo elNumero = al parámetro numero, sin usar this
-}
-
-void Numero::pintar()
-{
-    printf("\e[0;36mEl número %d\e[0m\n", elNumero);
 }
