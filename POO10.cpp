@@ -34,7 +34,7 @@ void CRender::m_Renderizar(const char *cadena)
 
 int main(int argc, char **argv)
 {
-    // crear 2 objetos CRender
+    // Crear 2 objetos CRender
     CRender render1, render2;
 
     render1.m_Renderizar("Inicializando la cadena para el objeto render1");
