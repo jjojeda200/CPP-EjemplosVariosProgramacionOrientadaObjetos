@@ -61,8 +61,6 @@ double Suma::calcular() { return getA() + getB(); }
 double Suma::calcularP() { return p.getA() + p.getB(); }
 
 
-
-
 int main()
 {
     // implementación de método realizado por Herencia por extensión
