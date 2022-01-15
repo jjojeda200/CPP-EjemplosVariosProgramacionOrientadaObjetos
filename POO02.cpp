@@ -34,9 +34,9 @@ private:
 
 public:
     derivada() { printf("\e[0;33mConstructor derivada...\e[0m\n"); } // Constructor
+    derivada(int x) { k = x; } // Constructor que me permite invocar e inicializar el objeto a la vez
     ~derivada() { printf("\e[0;33mDestructor derivada...\e[0m\n"); }
 
-    derivada(int x) { k = x; } // Constructor que me permite invocar e inicializar el objeto a la vez
 
     void mostrarDerivada() { printf("Valores/atributos almacenados en el objeto (clase derivada): %d\n", k); }
 };
