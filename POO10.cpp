@@ -18,14 +18,14 @@ using std::endl;
 class CRender
 {
 public:
-    char buffer[255];
+    char buffer[255]; // Objeto
     void m_Renderizar(const char *cadena);
 
     CRender() { printf("Constructor...\n"); }
     ~CRender() { printf("Destructor...\n"); }
 };
 
-// Implementa m_Renderizar() para la cadena
+// Implementa el metodo m_Renderizar() para la cadena
 void CRender::m_Renderizar(const char *cadena)
 {
     strcpy(buffer, cadena); // Copia la cadena
