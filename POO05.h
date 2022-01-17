@@ -15,7 +15,7 @@
     Algunas clases derivadas necesitan constructores. Si la clase base tiene un constructor hay que invocarlo y si, dicho constructor necesita argumentos, hay que proporcionarlos. Aunque los constructores de la clase base no se heredan, son usados para crear la parte heredada de la clase base, de un objeto de la clase derivada y, esta tarea es responsabilidad del constructor de la clase base.
 
     Compilar con -lstdc++
-    gcc POO04.cpp -o POO04 -lstdc++
+    gcc POO05.cpp -o POO05 -lstdc++
 */
 #pragma once
 #include <iostream>
