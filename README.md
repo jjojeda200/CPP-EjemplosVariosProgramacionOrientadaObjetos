@@ -22,6 +22,11 @@ POO02.cpp: POO desde CPP Clase derivada, constructores, destructores, herencia y
 
 POO03.cpp: POO desde CPP Clase, archivos encabezado, derivada, herencias, constructores, destructores, instanciación por valor y por punteros
 
+16-01-2022
+
+POO04.cpp: Ejercicio sacado de https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Objetos_y_Clases
+
 17-01-2022
 
-POO04.cpp: POO desde CPP Clase, Mejorando constructores, destructores, métodos virtuales y +++   
+POO05.cpp: POO desde CPP Clase, Mejorando constructores, destructores, métodos virtuales y +++ 
+

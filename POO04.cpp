@@ -1,77 +1,80 @@
 /*
-    José Juan Ojeda Granados, 17-01-2022
-    POO desde CPP
-        * Clase separada en archivos de encabezado
-        * Clase derivada con constructores y destructores
-        * Creación de objetos pro referencia y por punteros
+    José Juan Ojeda Granados, 16-01-2022
+    Programación en C++/Objetos y Clases
 
-    Creación básica de una clase llamada Numero
-        * Definición atributos/características
-        * Definición de métodos
-        * Definición de constructor
-        * Instanciación de objetos por valor y por puntero a HEAP
+    https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Objetos_y_Clases
 
-    Nota constructores y destructores:
-    Algunas clases derivadas necesitan constructores. Si la clase base tiene un constructor hay que invocarlo y si, dicho constructor necesita argumentos, hay que proporcionarlos. Aunque los constructores de la clase base no se heredan, son usados para crear la parte heredada de la clase base, de un objeto de la clase derivada y, esta tarea es responsabilidad del constructor de la clase base.
+    https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Herencia
 
     Compilar con -lstdc++
-    gcc POO04.cpp -o POO04 -lstdc++
 */
 #include <iostream>
-#include "POO04.h"
+#include <cstring>
 
-int main(int argc, char *argv[])
+using std::cout;
+using std::cin;
+using std::endl;
+
+class Pareja
 {
-    system("clear");
-    printf("\t\t\e[0;33mBloque primero Clase Base\e[0m\n");
-    
-    printf("Se crean el primer objeto, sin inicializar y se muestran en el constructor\n");
-    // Crea el objeto primero y lanza el constructor, se cierra con el destructor automático
-    // Se almacena un valor inicial para el primer objeto: 1
-    Numero Primero;
-    printf("Al no inicializar el objeto, contendrá cualquier valor que se encuentre en\n");
-    printf("la memoria asignada :\t ");
-    Primero.pintar();
-    printf("Se almacena el valor 1 con el método set y se muestra con el método pintar()\n");
-    Primero.set_Numero(1);
-    Primero.pintar();
+    // atributos
+    double a, b;
 
-    printf("\nSe crea el segundo objeto por puntero en heap, se muestra la dirección\n");
-    printf("Se les asigna un dato inicial: 20, y se muestran en el constructor\n");
-    // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
-    // Se almacena un valor inicial 
-    Numero *pNumero0 = new Numero(20);
-    printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
-    printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
-    printf("a: 2 y se muestra\n");
-    (*pNumero0).set_Numero(2);
-    pNumero0->pintar(); // Otra forma --> (*pNumero0).pintar();
+public:
+    // métodos
+    double getA();
+    double getB();
+    void setA(double n);
+    void setB(double n);
 
-    // destructor del constructor lanzado al crear *pNumero
-    // pNumero0 = nullptr; no lanza el destructor al des comentarlo
-    printf("Se elimina el puntero al segundo objeto y se dispara el destructor\n");
-    delete pNumero0;
+    Pareja() { printf("Constructor Pareja...\n"); }
+    ~Pareja() { printf("Destructor Pareja...\n"); }
+};
 
-    printf("\n\t\t\e[0;33mBloque segundo Clase Derivada\e[0m\n"); // Utilización clase derivada
-    printf("Se crean el primer objeto, sin inicializar y se muestran en los constructores\n");
-    printf("Nota, se recorren todos los constructores de las clases en que se base\n");
-    printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
-    printf("en la memoria asignada\n");
-    DerivadaNumero Segundo;
-    Segundo.set_Numero(2);
-    Segundo.set_DerivadaNumero(3);
-    printf("Se almacenan los valores 2 y 3 con los métodos set y se muestran con pintartodo\n");
-    Segundo.pintartodo();
+// implementación de los métodos de la clase Pareja
+double Pareja::getA() { return a; }
+double Pareja::getB() { return b; }
+void Pareja::setA(double n) { a = n; }
+void Pareja::setB(double n) { b = n; }
 
-    printf("Se inicializa con 5 en la clase derivada y almacena 4 con el método set\n");
-    DerivadaNumero Tercero(5);
-    Tercero.set_Numero(4);
-    Tercero.pintartodo();
 
-    printf("Se inicializan el objeto con valores 6 y 7, y y se muestra con el método pintartodo\n");
-    DerivadaNumero Cuarto(6,7);
-    Cuarto.pintartodo();
+class Suma : public Pareja
+{
+    // atributos de Suma
+    double resultado;
 
-    // ultimo destructor automático
+public:
+    // métodos de Sumaé realizado por Herencia por extensión
+    double calcular();
+
+    // métodos de Sumaé realizado por herencia por composicion
+    double calcularP();
+    Pareja  p;
+
+    Suma() { printf("Constructor Suma...\n"); }
+    ~Suma() { printf("Destructor Suma...\n"); }
+};
+// implementación de método realizado por Herencia por extensión
+double Suma::calcular() { return getA() + getB(); }
+
+// implementación del método realizado por herencia por composicion
+double Suma::calcularP() { return p.getA() + p.getB(); }
+
+
+int main()
+{
+    // implementación de método realizado por Herencia por extensión
+    Suma s;
+    s.setA(80);
+    s.setB(100);
+    cout << s.getA() << " + " << s.getB() << " = " << s.calcular() << endl;
+    cin.get();
+
+    // implementación del método realizado por herencia por composicion
+    Suma ss;
+    s.p.setA(180);
+    s.p.setB(100);
+    cout << s.p.getA() << " + " << s.p.getB() << " = " << s.calcularP() << endl;
+    cin.get();
     return 0;
 }
