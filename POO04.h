@@ -1,5 +1,5 @@
 /*
-    José Juan Ojeda Granados, 15-01-2022
+    José Juan Ojeda Granados, 17-01-2022
     POO desde CPP
         * Clase separada en archivos de encabezado
         * Clase derivada con constructores y destructores
@@ -15,7 +15,7 @@
     Algunas clases derivadas necesitan constructores. Si la clase base tiene un constructor hay que invocarlo y si, dicho constructor necesita argumentos, hay que proporcionarlos. Aunque los constructores de la clase base no se heredan, son usados para crear la parte heredada de la clase base, de un objeto de la clase derivada y, esta tarea es responsabilidad del constructor de la clase base.
 
     Compilar con -lstdc++
-    gcc POO03.cpp -o POO03 -lstdc++
+    gcc POO04.cpp -o POO04 -lstdc++
 */
 #pragma once
 #include <iostream>
@@ -24,37 +24,32 @@
 class Numero
 {
 protected:
-    int elNumero; // string elNombre;
+    int elNumero;
 
 public:
-    Numero();
+    // Numero(); // <-- Esto es solo una declaración que no es utilizable 
+    Numero() { printf("\e[0;37mConstructor predeterminado clase base... %d\e[0m\n", elNumero); } // Constructor predeterminado
     Numero(int elNumero);
     ~Numero();
-    int get_Numero();
-    void set_Numero(int numero);
+    int get_Numero(); // <-- Es solo una declaración que no es utilizable si el desarrollo del método/función
+    void set_Numero(int paramNumero); // <-- Es solo una declaración que no es utilizable si el desarrollo del método
 
-    // void Numero::pintar() // Al incluirse dentro de bloque de la clase, ya no hace falta referenciarla
-    void pintar() { printf("\e[0;36mEl número %d\e[0m\n", elNumero); }
+    // void Numero::pintar() // <-- Al incluirse dentro de bloque de la clase, ya no hace falta referenciarla
+    void pintar() { printf("\e[0;36mEl objeto almacena el número %d\e[0m\n", elNumero); }
 };
 
-Numero::Numero(int paramNumero) // Constructor
+// Metodos
+Numero::Numero(int paramNumero) // Desarrollo del segundo Constructor
 {
     this->elNumero = paramNumero; // Atributo elNumero = al parámetro paramNumero
-    printf("\e[0;37mConstructor ... %d\e[0m\n", elNumero);
+    printf("\e[0;37mConstructor segundo clase base... %d\e[0m\n", elNumero);
 }
+Numero::~Numero() { printf("\e[0;37mDestructor clase base... %d\e[0m\n", elNumero); } 
 
-Numero::~Numero() { printf("\e[0;37mDestructor ...\e[0m\n"); } 
+int Numero::get_Numero() { return elNumero; }
 
-int Numero::get_Numero() // Metodo
-{
-    return elNumero;
-}
-
-void Numero::set_Numero(int numero)
-{
-    elNumero = numero; // Atributo elNumero = al parámetro numero, sin usar this
-}
-
+// Atributo elNumero = al parámetro paramNumero, sin usar this
+void Numero::set_Numero(int paramNumero) { elNumero = paramNumero; }
 
 
 class DerivadaNumero : public Numero
@@ -63,13 +58,26 @@ private:
     int elNumeroDerivado;
 
 public:
-    DerivadaNumero() : Numero() { printf("\e[0;33mConstructor derivada...\e[0m\n"); }
+    // Utiliza el constructor predeterminado de la clase base (class Numero)
+    // solo para crear objetos 
+    DerivadaNumero() { printf("\e[0;33mConstructor predeterminado clase derivada... %d\e[0m\n\n", elNumeroDerivado); }
     
-    DerivadaNumero( int paramNumeroDerivado, int elNumero) : Numero(elNumero)
+    DerivadaNumero( int paramNumeroDerivado )
     {
-    elNumero = elNumero; // Atributo elNumero = al parámetro paramNumero
-    this->elNumeroDerivado = paramNumeroDerivado; // Atributo paramNumeroDerivado = al parámetro paramNumeroDerivado
-    printf("\e[0;37mConstructor Clase Derivada... %d, %d\e[0m\n", elNumeroDerivado, elNumero);
+        elNumero = 0;
+        this->elNumeroDerivado = paramNumeroDerivado;
+        printf("\e[0;33mConstructor segundo clase derivada... %d, %d\e[0m\n", elNumeroDerivado, elNumero);
     }
-    ~DerivadaNumero() { printf("\e[0;37mDestructor Clase Derivada...\e[0m\n"); }
+
+    DerivadaNumero( int paramNumero, int paramNumeroDerivado) : Numero(elNumero)
+    {
+    this->elNumero = paramNumero; // Atributo elNumero = al parámetro paramNumero
+    this->elNumeroDerivado = paramNumeroDerivado; // Atributo paramNumeroDerivado = al parámetro paramNumeroDerivado
+    printf("\e[0;33mConstructor tercero clase derivada... %d, %d\e[0m\n", elNumero, elNumeroDerivado);
+    }
+    ~DerivadaNumero() { printf("\e[0;33mDestructor Clase Derivada... %d\e[0m\n", elNumeroDerivado); }
+
+    int get_DerivadaNumero() { return elNumeroDerivado; }
+    void set_DerivadaNumero(int paramNumero) { elNumeroDerivado = paramNumero; }
+    void pintartodo() { printf("\e[0;35mEl objeto almacena los números %d, %d\e[0m\n\n", elNumero, elNumeroDerivado); }
 };

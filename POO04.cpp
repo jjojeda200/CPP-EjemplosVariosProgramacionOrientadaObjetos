@@ -1,5 +1,5 @@
 /*
-    José Juan Ojeda Granados, 15-01-2022
+    José Juan Ojeda Granados, 17-01-2022
     POO desde CPP
         * Clase separada en archivos de encabezado
         * Clase derivada con constructores y destructores
@@ -15,60 +15,62 @@
     Algunas clases derivadas necesitan constructores. Si la clase base tiene un constructor hay que invocarlo y si, dicho constructor necesita argumentos, hay que proporcionarlos. Aunque los constructores de la clase base no se heredan, son usados para crear la parte heredada de la clase base, de un objeto de la clase derivada y, esta tarea es responsabilidad del constructor de la clase base.
 
     Compilar con -lstdc++
-    gcc POO03.cpp -o POO03 -lstdc++
+    gcc POO04.cpp -o POO04 -lstdc++
 */
 #include <iostream>
-#include "POO03.h"
+#include "POO04.h"
 
 int main(int argc, char *argv[])
 {
     system("clear");
+    printf("\t\t\e[0;33mBloque primero Clase Base\e[0m\n");
+    
+    printf("Se crean el primer objeto, sin inicializar y se muestran en el constructor\n");
+    // Crea el objeto primero y lanza el constructor, se cierra con el destructor automático
+    // Se almacena un valor inicial para el primer objeto: 1
+    Numero Primero;
+    printf("Al no inicializar el objeto, contendrá cualquier valor que se encuentre en\n");
+    printf("la memoria asignada :\t ");
+    Primero.pintar();
+    printf("Se almacena el valor 1 con el método set y se muestra con el método pintar()\n");
+    Primero.set_Numero(1);
+    Primero.pintar();
 
-    printf("Se crean objetos Primer y Según, se almacena 1 y 2 respectivamente\n");
-    printf("Y se muestran en el constructor\n");
-    // Crea el objeto Primer y lanza el constructor, se cierra con el destructor automático
-    // Se almacena un valor inicial para Primer de 1
-    Numero Primer(1);
-    Primer.pintar();
-    // Se almacena un valor inicial para Según de 2
-    Numero Segun(2);
-    Segun.pintar();
-    printf("Se modifica el dato de Primer y Según, a 10 y 20 respectivamente\n");
-    printf("Y se muestra con el método pintar()\n");
-    Primer.set_Numero(10);
-    Primer.pintar();
-    Segun.set_Numero(20);
-    Segun.pintar();
-
-    printf("\nSe crea el objeto por puntero en heap, se muestra la dirección\n");
-    printf("Se les asigna un dato inicial y se muestran en el constructor\n");
+    printf("\nSe crea el segundo objeto por puntero en heap, se muestra la dirección\n");
+    printf("Se les asigna un dato inicial: 20, y se muestran en el constructor\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
     // Se almacena un valor inicial 
-    Numero *pNumero0 = new Numero(4);
+    Numero *pNumero0 = new Numero(20);
     printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
-
-    Numero *pNumero1 = new Numero(5);
-    printf("pNumero1\t\t\e[0;33m%p\e[0m\n", pNumero1);
-
-    printf("Se llama al método set_Numero por puntero, se almacena el 40, se muestra\n");
-    (*pNumero0).set_Numero(40);
-    (*pNumero0).pintar();
-
-    printf("Se muestra el ultimo objeto creado sin modificar su dato\n");
-    // pNumero1->set_Numero(50);
-    pNumero1->pintar();
+    printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
+    printf("a: 2 y se muestra\n");
+    (*pNumero0).set_Numero(2);
+    pNumero0->pintar(); // Otra forma --> (*pNumero0).pintar();
 
     // destructor del constructor lanzado al crear *pNumero
     // pNumero0 = nullptr; no lanza el destructor al des comentarlo
+    printf("Se elimina el puntero al segundo objeto y se dispara el destructor\n");
     delete pNumero0;
-    delete pNumero1;
 
-    // Utilización clase derivada
-     DerivadaNumero valor0;
-    // valor0.pintar();
+    printf("\n\t\t\e[0;33mBloque segundo Clase Derivada\e[0m\n"); // Utilización clase derivada
+    printf("Se crean el primer objeto, sin inicializar y se muestran en los constructores\n");
+    printf("Fijarse, se recorre todos los constructores de las clases en que se base\n");
+    printf("Nuevamente al no inicializar el objeto, contendrá cualquier valor que exista\n");
+    printf("en la memoria asignada\n");
+    DerivadaNumero Segundo;
+    Segundo.set_Numero(2);
+    Segundo.set_DerivadaNumero(3);
+    printf("Se almacenan los valores 2 y 3 con los métodos set y se muestran con pintartodo\n");
+    Segundo.pintartodo();
 
-    DerivadaNumero valor1(100, 110);
-    valor1.pintar();
+    printf("Se inicializa con 5 en la clase derivada y almacena 4 con el método set\n");
+    DerivadaNumero Tercero(5);
+    Tercero.set_Numero(4);
+    Tercero.pintartodo();
+
+    printf("Se inicializan el objeto con valores 6 y 7, y y se muestra con el método pintartodo\n");
+    DerivadaNumero Cuarto(6,7);
+    Cuarto.pintartodo();
 
     // ultimo destructor automático
     return 0;
