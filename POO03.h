@@ -27,7 +27,6 @@ protected:
     int elNumero; // string elNombre;
 
 public:
-    Numero();
     Numero(int elNumero);
     ~Numero();
     int get_Numero();
@@ -60,12 +59,12 @@ void Numero::set_Numero(int numero)
 class DerivadaNumero : public Numero
 {
 private:
-     int elNumeroDerivado; // string elNombre;
+    int elNumeroDerivado;
+
 public:
-    DerivadaNumero() { printf("\e[0;33mConstructor derivada...\e[0m\n"); }
     DerivadaNumero( int paramNumeroDerivado, int elNumero) : Numero(elNumero)
     {
-    this elNumero = elNumero; // Atributo elNumero = al parámetro paramNumero
+    elNumero = elNumero; // Atributo elNumero = al parámetro paramNumero
     this->elNumeroDerivado = paramNumeroDerivado; // Atributo paramNumeroDerivado = al parámetro paramNumeroDerivado
     printf("\e[0;37mConstructor Clase Derivada... %d, %d\e[0m\n", elNumeroDerivado, elNumero);
     }
