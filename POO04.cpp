@@ -54,8 +54,8 @@ int main(int argc, char *argv[])
 
     printf("\n\t\t\e[0;33mBloque segundo Clase Derivada\e[0m\n"); // Utilización clase derivada
     printf("Se crean el primer objeto, sin inicializar y se muestran en los constructores\n");
-    printf("Fijarse, se recorre todos los constructores de las clases en que se base\n");
-    printf("Nuevamente al no inicializar el objeto, contendrá cualquier valor que exista\n");
+    printf("Nota, se recorren todos los constructores de las clases en que se base\n");
+    printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
     DerivadaNumero Segundo;
     Segundo.set_Numero(2);
