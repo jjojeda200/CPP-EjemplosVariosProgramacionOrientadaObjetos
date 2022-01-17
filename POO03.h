@@ -62,10 +62,12 @@ class DerivadaNumero : public Numero
 private:
      int elNumeroDerivado; // string elNombre;
 public:
-    DerivadaNumero( int paramNumeroDerivado)
+    DerivadaNumero() { printf("\e[0;33mConstructor derivada...\e[0m\n"); }
+    DerivadaNumero( int paramNumeroDerivado, int elNumero) : Numero(elNumero)
     {
+    this elNumero = elNumero; // Atributo elNumero = al parámetro paramNumero
     this->elNumeroDerivado = paramNumeroDerivado; // Atributo paramNumeroDerivado = al parámetro paramNumeroDerivado
-    printf("\e[0;37mConstructor ... %d\e[0m\n", elNumeroDerivado);
+    printf("\e[0;37mConstructor Clase Derivada... %d, %d\e[0m\n", elNumeroDerivado, elNumero);
     }
-    ~DerivadaNumero() { printf("\e[0;37mDestructor ...\e[0m\n"); }
+    ~DerivadaNumero() { printf("\e[0;37mDestructor Clase Derivada...\e[0m\n"); }
 };

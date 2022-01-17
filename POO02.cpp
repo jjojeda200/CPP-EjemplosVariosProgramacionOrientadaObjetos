@@ -21,11 +21,13 @@ public:
         this->variableI = a;
         variableII = b;
     }
-    void mostrar()
-    {
-        printf("Valores/atributos almacenados en el objeto (clase base): %d, %d\n", variableI, variableII);
-    }
+    void mostrar();
 };
+
+void base::mostrar()
+{
+    printf("Valores/atributos almacenados en el objeto (clase base): %d, %d\n", variableI, variableII);
+}
 
 class derivada : public base
 {
@@ -34,9 +36,8 @@ private:
 
 public:
     derivada() { printf("\e[0;33mConstructor derivada...\e[0m\n"); } // Constructor
-    derivada(int x) { k = x; } // Constructor que me permite invocar e inicializar el objeto a la vez
+    derivada(int x) { k = x; }                                       // Constructor que me permite invocar e inicializar el objeto a la vez
     ~derivada() { printf("\e[0;33mDestructor derivada...\e[0m\n"); }
-
 
     void mostrarDerivada() { printf("Valores/atributos almacenados en el objeto (clase derivada): %d\n", k); }
 };
@@ -44,7 +45,6 @@ public:
 int main()
 {
     system("clear");
-    
 
     // instaciación objeto clase base, comentada para seguimiento de ejecución de constructores
     printf("\e[0;31mEjemplo Uno\e[0m\n");
@@ -53,7 +53,6 @@ int main()
     Variables0.set(10, 20);
     Variables0.mostrar();
     printf("\e[0m\n");
-
 
     printf("\e[0;31mEjemplo Dos\n");
     // instaciación objeto clase derivada, primero se ejecuta el constructor de la clase más nativa
@@ -69,7 +68,6 @@ int main()
     objeto0.mostrarDerivada();
     printf("\e[0m\n");
 
-
     printf("\e[0;31mEjemplo Tres\n");
     printf("\e[0;34mInstaciar objeto de la clase derivada invocando al primer método constructor\n");
     printf("sin pasar valor para la variable: \e[0;37mderivada objeto1\e[0m\n");
@@ -83,6 +81,5 @@ int main()
     objeto1.mostrarDerivada();
     printf("\e[0m\n");
 
-    
     return 0;
 }

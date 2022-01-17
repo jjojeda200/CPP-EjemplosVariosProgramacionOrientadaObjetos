@@ -63,9 +63,9 @@ int main(int argc, char *argv[])
     delete pNumero0;
     delete pNumero1;
 
-    DerivadaNumero valorUno(200);
-    valorUno.set_Numero(100);
-    valorUno.pintar();
+    
+    DerivadaNumero valor(100,110);
+    valor.pintar();
 
     // ultimo destructor automático
     return 0;
