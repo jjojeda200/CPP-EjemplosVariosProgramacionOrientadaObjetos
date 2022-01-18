@@ -41,17 +41,17 @@ void BloquePrimero()
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
     
     // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
-    Numero *pNumero0 = new Numero(20); // (20) <-- Se almacena un valor inicial 
-    printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
+    Numero *pNumero = new Numero(20); // (20) <-- Se almacena un valor inicial 
+    printf("pNumero\t\t\e[0;33m%p\e[0m\n", pNumero);
     printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
-    printf("a: 2 y se muestra\n");
-    (*pNumero0).set_Numero(2);
-    pNumero0->pintar(); // Otra forma --> (*pNumero0).pintar();
+    printf("con un 2 y se muestra\n");
+    (*pNumero).set_Numero(2);
+    pNumero->pintar(); // Otra forma --> (*pNumero).pintar();
 
     // destructor del constructor lanzado al crear *pNumero
-    // pNumero0 = nullptr; no lanza el destructor al des comentarlo
+    // pNumero = nullptr; no lanza el destructor al des comentarlo
     printf("Se elimina el puntero al segundo objeto y se dispara el destructor\n");
-    delete pNumero0;
+    delete pNumero;
 
     return;
 }
@@ -88,25 +88,21 @@ void BloqueTercero()
     system("clear");
     printf("\t\e[0;33mBloque 3º Clase Derivada (Polimorfismo, Funciones Virtuales)\e[0m\n");
     printf("Se crean el primer objeto por puntero, sin inicializar\n");
+    printf("\t\t\tDerivadaNumero *pObjeto = new DerivadaNumero;\n");
     printf("Se muestran los constructores\n");
     // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
     DerivadaNumero *pObjeto = new DerivadaNumero;
-    printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pObjeto);
     printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
-    printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
-    printf("a: 2 y se muestra\n");
+    printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
+    printf("Se llama a los métodos:\t(*pObjeto).set_Numero(1);\n");
+    printf("y:\t\t\t(*pObjeto).set_DerivadaNumero(2);\n");
     (*pObjeto).set_Numero(1);    
     (*pObjeto).set_DerivadaNumero(2);
-    pObjeto->pintartodo(); // Otra forma --> (*pObjeto).pintar();
+    pObjeto->pintartodo(); // Otra forma --> (*pObjeto).pintartodo();
 
-
-/* 
-    Numero *pNumero0 = new Numero;
-    printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
-    (*pNumero0).set_Numero(2);
-    pNumero0->pintar(); // Otra forma --> (*pNumero0).pintar();
-*/
+    printf("Se elimina el puntero al objeto y se disparan los destructores\n");
+    delete pObjeto;
     return;
 }
 //********************************************************************************
