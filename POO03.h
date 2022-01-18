@@ -36,7 +36,7 @@ public:
     void pintar() { printf("\e[0;36mEl número %d\e[0m\n", elNumero); }
 };
 
-Numero::Numero(int paramNumero) // Constructor
+Numero::Numero(int paramNumero) // Constructor 
 {
     this->elNumero = paramNumero; // Atributo elNumero = al parámetro paramNumero
     printf("\e[0;37mConstructor ... %d\e[0m\n", elNumero);

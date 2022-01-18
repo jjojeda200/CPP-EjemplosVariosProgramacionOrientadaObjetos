@@ -43,11 +43,11 @@ int main(int argc, char *argv[])
     printf("\nSe crea el objeto por puntero en heap, se muestra la dirección\n");
     printf("Se les asigna un dato inicial y se muestran en el constructor\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
-    // Se almacena un valor inicial 
-    Numero *pNumero0 = new Numero(4);
+    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto 
+    Numero *pNumero0 = new Numero(4); // (4) <-- Se almacena un valor inicial
     printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
 
-    Numero *pNumero1 = new Numero(5);
+    Numero *pNumero1 = new Numero(5); // (5) <-- Se almacena un valor inicial
     printf("pNumero1\t\t\e[0;33m%p\e[0m\n", pNumero1);
 
     printf("Se llama al método set_Numero por puntero, se almacena el 40, se muestra\n");

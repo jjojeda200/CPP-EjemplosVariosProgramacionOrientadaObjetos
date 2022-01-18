@@ -10,7 +10,7 @@
 
     Compilar con -lstdc++
     gcc POO01.cpp -o POO01 -lstdc++
-*/
+*/ 
 #pragma once
 #include <iostream>
 #include <string>
