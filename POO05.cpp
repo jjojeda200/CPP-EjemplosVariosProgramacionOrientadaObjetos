@@ -11,9 +11,13 @@
         * Definición de constructor
         * Instanciación de objetos por valor y por puntero a HEAP
 
-    Nota constructores y destructores:
-    Algunas clases derivadas necesitan constructores. Si la clase base tiene un constructor hay que invocarlo y si, dicho constructor necesita argumentos, hay que proporcionarlos. Aunque los constructores de la clase base no se heredan, son usados para crear la parte heredada de la clase base, de un objeto de la clase derivada y, esta tarea es responsabilidad del constructor de la clase base.
-
+    Notas:
+        constructor y destructor:
+        Algunas clases derivadas necesitan constructores. Si la clase base tiene un constructor hay que invocarlo y si, dicho constructor necesita argumentos, hay que proporcionarlos. Aunque los constructores de la clase base no se heredan, son usados para crear la parte heredada de la clase base, de un objeto de la clase derivada y, esta tarea es responsabilidad del constructor de la clase base.
+    
+        slicing:
+        La división de objetos se produce cuando un objeto de un tipo de subclase se copia en un objeto de tipo superclase: la copia de superclase no tendrá ninguna de las variables miembro definidas en la subclase. Estas variables, en efecto, se han "cortado".
+    
     Compilar con -lstdc++
     gcc POO05.cpp -o POO05 -lstdc++
 */
@@ -126,9 +130,10 @@ void BloqueCuarto()
     printf("en la memoria asignada\n");
     printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
     printf("Se llama al método:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
-    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n");
-    (*pObjeto).set_Numero(1);    
-//    (*pObjeto).set_DerivadaNumero(2);
+    (*pObjeto).set_Numero(1);
+    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n"); // <-- slicing 
+//  (*pObjeto).set_DerivadaNumero(2);
+
     pObjeto->pintar(); // Otra forma --> (*pObjeto).pintar();
     printf("Llamada a función calculo(), se ejecuta en clase base:\n\t\e[0;36mint Resultado = pObjeto->calculo();\e[0m = ");
     int Resultado = pObjeto->calculo();
@@ -142,6 +147,50 @@ void BloqueCuarto()
     return;
 }
 //********************************************************************************
+void BloqueQuinto()
+{
+    system("clear");
+    printf("\t\e[0;33mBloque 5º Clase Derivada (Polimorfismo, Dynamic_cast)\e[0m\n");
+    printf("Se crean un objeto de clase base por puntero a clase derivada:\n");
+    printf("\t\t\t\e[0;31m-->\e[0;36mNumero *pObjeto = new DerivadaNumero;\e[0m\n");
+    printf("Se muestran los constructores\n");
+    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
+    Numero *pObjeto = new DerivadaNumero;
+    printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
+    printf("Se llama al método:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
+    (*pObjeto).set_Numero(1);
+    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n");
+//  (*pObjeto).set_DerivadaNumero(2);
+
+    /*
+    Las conversiones en sentido descendente se denominan downcast, y las contrarias upcast
+    Conversión descendente (downcasting):
+        Conversión hacia un tipo inferior. Solo se puede hacer si existe la instancia hacia un tipo inferior, por ejemplo:
+            Animal *pa = new Perro();
+            Perro *p = dynamic_cast<Perro*>(pa);
+        Conversión ascendente (upcasting):
+        Implica la conversión de punteros de una clase derivada a una clase base. Conversión hacia un tipo superior:
+            Perro *p = new Perro();
+            Animal *a = dynamic_cast<Animal*>(p);
+    */
+
+    printf("\nPara poder acceder a métodos de la clase derivada se utiliza dynamic_cast:\n");
+    printf("\e[0;36mDerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);\e[0m;\n");
+    
+    // NombreClaseDelObjeto *NombreVariablePuntero = dynamic_cast<NombreClaseDelObjeto *> NombreDelObjeto
+    DerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);
+
+    printf("Ya podemos llamar a los métodos de la clase derivada:\n");
+    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->set_DerivadaNumero(2);\e[0m\n");
+    pClaseDerivada->set_DerivadaNumero(2);
+
+    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->pintartodo();\e[0m\n");
+    pClaseDerivada->pintartodo();
+
+    printf("Se elimina el puntero al objeto y se disparan los destructores\n");
+    delete pObjeto;
+    return;
+}
 
 void Menu()
 {
@@ -155,7 +204,8 @@ void Menu()
         printf("\t1 - Bloque 1ª Clase Base (Instaciación Stack, Heap, +++).\n");
         printf("\t2 - Bloque 2º Clase Derivada (Constructores, Destructores, Métodos).\n");
         printf("\t3 - Bloque 3º Clase Derivada (Punteros, Funciones).\n");
-        printf("\t4 - Bloque 4º Clase Derivada (Polimorfismo, Funciones Virtuales).\n\n");
+        printf("\t4 - Bloque 4º Clase Derivada (Polimorfismo, Funciones Virtuales).\n");
+        printf("\t5 - Bloque 5º Clase Derivada (Polimorfismo, Dynamic_cast).\n\n");
 
         printf("\t  - Comparar las salidas de los bloques 3 y 4.\n\n");     
         printf("Teclea opción: ");
@@ -175,12 +225,15 @@ void Menu()
         case 4:
             BloqueCuarto();
             break;
+        case 5:
+            BloqueQuinto();
+            break;
         default:
             printf("\e[0;33mLa opción no es válida.\n\e[0m");
             sleep(2);
             system("clear");
         }
-    } while (opcion < 1 || opcion > 4);
+    } while (opcion < 1 || opcion > 5);
 }
 
 int main(int argc, char *argv[])

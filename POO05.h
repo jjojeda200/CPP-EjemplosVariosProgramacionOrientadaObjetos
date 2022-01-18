@@ -30,8 +30,9 @@ public:
     // Numero(); // <-- Esto es solo una declaración que no es utilizable 
     Numero() { printf("\e[0;37mConstructor predeterminado clase base... %d\e[0m\n", elNumero); } // Constructor predeterminado
     Numero(int elNumero);
+    
 
-    ~Numero();
+    virtual ~Numero(); // <-- Si existe algún método virtual el destructor debe serlo también
     
     int get_Numero(); // <-- Es solo una declaración que no es utilizable si el desarrollo del método/función
     void set_Numero(int paramNumero); // <-- Es solo una declaración que no es utilizable si el desarrollo del método

@@ -28,5 +28,7 @@ POO04.cpp: Ejercicio sacado de https://es.wikibooks.org/wiki/Programaci%C3%B3n_e
 
 17-01-2022
 
-POO05.cpp: POO desde CPP Clase, Mejorando constructores, destructores, métodos virtuales y +++ 
+POO05.cpp: POO desde CPP Clases, polimorfismo, constructor, destructor, métodos y destructor virtuales, dynamic_cast, +++
+
+18-01-2022
 
