@@ -39,8 +39,9 @@ void BloquePrimero()
     printf("\nSe crea el segundo objeto por puntero en heap, se muestra la dirección\n");
     printf("Se les asigna un dato inicial: 20, y se muestran en el constructor\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
-    // Se almacena un valor inicial 
-    Numero *pNumero0 = new Numero(20);
+    
+    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
+    Numero *pNumero0 = new Numero(20); // (20) <-- Se almacena un valor inicial 
     printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
     printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
     printf("a: 2 y se muestra\n");
@@ -86,17 +87,21 @@ void BloqueTercero()
 {
     system("clear");
     printf("\t\e[0;33mBloque 3º Clase Derivada (Polimorfismo, Funciones Virtuales)\e[0m\n");
-    printf("Se crean el primer objeto por puntero, sin inicializar y se muestran en los constructores\n");
+    printf("Se crean el primer objeto por puntero, sin inicializar\n");
+    printf("Se muestran los constructores\n");
+    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
+    DerivadaNumero *pObjeto = new DerivadaNumero;
+    printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pObjeto);
     printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
+    printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
+    printf("a: 2 y se muestra\n");
+    (*pObjeto).set_Numero(1);    
+    (*pObjeto).set_DerivadaNumero(2);
+    pObjeto->pintartodo(); // Otra forma --> (*pObjeto).pintar();
 
-    DerivadaNumero *pQuinto = new DerivadaNumero;
-/*    printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pQuinto);
-     printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
-    printf("a: 1 y se muestra\n");
-    (*pQuinto).set_DerivadaNumero(2);
-    pQuinto->pintartodo(); // Otra forma --> (*pQuinto).pintar();
- 
+
+/* 
     Numero *pNumero0 = new Numero;
     printf("pNumero0\t\t\e[0;33m%p\e[0m\n", pNumero0);
     (*pNumero0).set_Numero(2);
