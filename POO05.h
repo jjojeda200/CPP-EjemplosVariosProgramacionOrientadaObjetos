@@ -37,7 +37,9 @@ public:
     void set_Numero(int paramNumero); // <-- Es solo una declaración que no es utilizable si el desarrollo del método
 
     // void Numero::pintar() // <-- Al incluirse dentro de bloque de la clase, ya no hace falta referenciarla
-    void pintar() { printf("\e[0;36mEl objeto almacena el número %d\e[0m\n", elNumero); }
+    void pintar() { printf("\e[0;36mEl objeto almacena el número %d\e[0m\n\n", elNumero); }
+    int calculo() { return elNumero * 10; }
+    virtual int calculo1() { return elNumero * 10; }
 };
 
 // Metodos
@@ -82,4 +84,6 @@ public:
     int get_DerivadaNumero() { return elNumeroDerivado; }
     void set_DerivadaNumero(int paramNumero) { elNumeroDerivado = paramNumero; }
     void pintartodo() { printf("\e[0;35mEl objeto almacena los números %d, %d\e[0m\n\n", elNumero, elNumeroDerivado); }
+    int calculo() { return elNumero * 20; }
+    int calculo1() { return elNumero * 20; }
 };

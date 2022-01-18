@@ -18,6 +18,7 @@
     gcc POO05.cpp -o POO05 -lstdc++
 */
 #include <iostream>
+#include <unistd.h> // sleep()
 #include "POO05.h"
 
 void BloquePrimero()
@@ -36,7 +37,7 @@ void BloquePrimero()
     Primero.set_Numero(1);
     Primero.pintar();
 
-    printf("\nSe crea el segundo objeto por puntero en heap, se muestra la dirección\n");
+    printf("Se crea el segundo objeto por puntero en heap, se muestra la dirección\n");
     printf("Se les asigna un dato inicial: 20, y se muestran en el constructor\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
     
@@ -86,26 +87,62 @@ void BloqueSegundo()
 void BloqueTercero()
 {
     system("clear");
-    printf("\t\e[0;33mBloque 3º Clase Derivada (Polimorfismo, Funciones Virtuales)\e[0m\n");
-    printf("Se crean el primer objeto por puntero, sin inicializar\n");
-    printf("\t\t\tDerivadaNumero *pObjeto = new DerivadaNumero;\n");
+    printf("\t\e[0;33mBloque 3º Clase Derivada (Punteros, Funciones)\e[0m\n");
+    printf("Se crean un objeto de clase derivada por puntero a clase derivada:\n");
+    printf("\t\t\t\e[0;31m-->\e[0;36mDerivadaNumero *pObjeto = new DerivadaNumero;\e[0m\n");
     printf("Se muestran los constructores\n");
     // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
     DerivadaNumero *pObjeto = new DerivadaNumero;
     printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
     printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
-    printf("Se llama a los métodos:\t(*pObjeto).set_Numero(1);\n");
-    printf("y:\t\t\t(*pObjeto).set_DerivadaNumero(2);\n");
+    printf("Se llama a los métodos:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
+    printf("y:\t\t\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n");
     (*pObjeto).set_Numero(1);    
     (*pObjeto).set_DerivadaNumero(2);
     pObjeto->pintartodo(); // Otra forma --> (*pObjeto).pintartodo();
+    printf("Llamada a función calculo(), se ejecuta en clase derivada:\n\t\e[0;36mint Resultado = pObjeto->calculo();\e[0m = ");
+    int Resultado = pObjeto->calculo();
+    printf("%d\n", Resultado);
+    printf("Llamada a función calculo1(), se ejecuta en clase derivada:\n\t\e[0;36mint Resultado = pObjeto->calculo1();\e[0m = ");
+    Resultado = pObjeto->calculo1();
+    printf("%d\n", Resultado);
 
     printf("Se elimina el puntero al objeto y se disparan los destructores\n");
     delete pObjeto;
     return;
 }
 //********************************************************************************
+void BloqueCuarto()
+{
+    system("clear");
+    printf("\t\e[0;33mBloque 4º Clase Derivada (Polimorfismo, Funciones Virtuales)\e[0m\n");
+    printf("Se crean un objeto de clase base por puntero a clase derivada:\n");
+    printf("\t\t\t\e[0;31m-->\e[0;36mNumero *pObjeto = new DerivadaNumero;\e[0m\n");
+    printf("Se muestran los constructores\n");
+    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
+    Numero *pObjeto = new DerivadaNumero;
+    printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
+    printf("en la memoria asignada\n");
+    printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
+    printf("Se llama al método:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
+    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n");
+    (*pObjeto).set_Numero(1);    
+//    (*pObjeto).set_DerivadaNumero(2);
+    pObjeto->pintar(); // Otra forma --> (*pObjeto).pintar();
+    printf("Llamada a función calculo(), se ejecuta en clase base:\n\t\e[0;36mint Resultado = pObjeto->calculo();\e[0m = ");
+    int Resultado = pObjeto->calculo();
+    printf("%d\n", Resultado);
+    printf("Llamada a función calculo1(), se ejecuta en clase derivada:\n\t\e[0;36mint Resultado = pObjeto->calculo1();\e[0m = ");
+    Resultado = pObjeto->calculo1();
+    printf("%d\n", Resultado);
+
+    printf("Se elimina el puntero al objeto y se disparan los destructores\n");
+    delete pObjeto;
+    return;
+}
+//********************************************************************************
+
 void Menu()
 {
     system("clear");
@@ -117,7 +154,10 @@ void Menu()
         printf("Instanciación por valor y por punteros....\e[0m\n");
         printf("\t1 - Bloque 1ª Clase Base (Instaciación Stack, Heap, +++).\n");
         printf("\t2 - Bloque 2º Clase Derivada (Constructores, Destructores, Métodos).\n");
-        printf("\t3 - Bloque 3º Clase Derivada (Polimorfismo, Funciones Virtuales).\n");
+        printf("\t3 - Bloque 3º Clase Derivada (Punteros, Funciones).\n");
+        printf("\t4 - Bloque 4º Clase Derivada (Polimorfismo, Funciones Virtuales).\n\n");
+
+        printf("\t  - Comparar las salidas de los bloques 3 y 4.\n\n");     
         printf("Teclea opción: ");
         std::cin >> opcion;
 
@@ -133,9 +173,12 @@ void Menu()
             BloqueTercero();
             break;
         case 4:
+            BloqueCuarto();
             break;
         default:
-            std::cout << "La opción no es válida.\n";
+            printf("\e[0;33mLa opción no es válida.\n\e[0m");
+            sleep(2);
+            system("clear");
         }
     } while (opcion < 1 || opcion > 4);
 }
