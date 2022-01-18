@@ -175,17 +175,24 @@ void BloqueQuinto()
     */
 
     printf("\nPara poder acceder a métodos de la clase derivada se utiliza dynamic_cast:\n");
-    printf("\e[0;36mDerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);\e[0m;\n");
-    
+    printf("\e[0;36mDerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);\e[0m\n");
     // NombreClaseDelObjeto *NombreVariablePuntero = dynamic_cast<NombreClaseDelObjeto *> NombreDelObjeto
-    DerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);
-
-    printf("Ya podemos llamar a los métodos de la clase derivada:\n");
+    DerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);  // usando punteros
+    printf("Ya podemos llamar a los métodos de la clase derivada usando punteros:\n");
     printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->set_DerivadaNumero(2);\e[0m\n");
-    pClaseDerivada->set_DerivadaNumero(2);
-
+    pClaseDerivada->set_DerivadaNumero(2);  // usando punteros
     printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->pintartodo();\e[0m\n");
-    pClaseDerivada->pintartodo();
+    pClaseDerivada->pintartodo();  // usando punteros
+
+
+    printf("\e[0;36mDerivadaNumero &pClaseDerivada1 = dynamic_cast<DerivadaNumero &> (*pObjeto);\e[0m\n");
+    // NombreClaseDelObjeto &NombreVariablePuntero = dynamic_cast<NombreClaseDelObjeto &> *NombreDelObjeto
+    DerivadaNumero &pClaseDerivada1 = dynamic_cast<DerivadaNumero &> (*pObjeto);  // usando referencias    
+    printf("Ya podemos llamar a los métodos de la clase derivada usando referencias:\n");
+    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada1.set_DerivadaNumero(2);\e[0m\n");
+    pClaseDerivada1.set_DerivadaNumero(3);  // usando referencias
+    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada1.pintartodo();\e[0m\n");
+    pClaseDerivada1.pintartodo();  // usando referencias
 
     printf("Se elimina el puntero al objeto y se disparan los destructores\n");
     delete pObjeto;
