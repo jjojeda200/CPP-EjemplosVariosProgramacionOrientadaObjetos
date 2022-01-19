@@ -5,7 +5,7 @@
         * Clase derivada con constructores y destructores
         * Creación de objetos pro referencia y por punteros
 
-    Creación básica de una clase llamada Numero
+    Creación básica de una clase llamada ClaseNumero
         * Definición atributos/características
         * Definición de métodos
         * Definición de constructor
@@ -33,24 +33,24 @@ void BloquePrimero()
     printf("Se crean el primer objeto, sin inicializar y se muestran en el constructor\n");
     // Crea el objeto primero y lanza el constructor, se cierra con el destructor automático
     // Se almacena un valor inicial para el primer objeto: 1
-    Numero Primero;
+    ClaseNumero Primero;
     printf("Al no inicializar el objeto, contendrá cualquier valor que se encuentre en\n");
     printf("la memoria asignada :\t ");
     Primero.pintar();
     printf("Se almacena el valor 1 con el método set y se muestra con el método pintar()\n");
-    Primero.set_Numero(1);
+    Primero.set_ClaseNumero(1);
     Primero.pintar();
 
     printf("Se crea el segundo objeto por puntero en heap, se muestra la dirección\n");
-    printf("Se les asigna un dato inicial: 20, y se muestran en el constructor\n");
+    printf("Se le asigna un dato inicial: 20, y se muestran en el constructor\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
     
-    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
-    Numero *pNumero = new Numero(20); // (20) <-- Se almacena un valor inicial 
+    // NombreClaseDelObjeto *NombreNuevaVariablePuntero = new NombreClaseDelObjeto
+    ClaseNumero *pNumero = new ClaseNumero(20); // (20) <-- Se almacena un valor inicial 
     printf("pNumero\t\t\e[0;33m%p\e[0m\n", pNumero);
-    printf("Se llama al método set_Numero por puntero, se modifica el contenido\n");
+    printf("Se llama al método set_ClaseNumero por puntero, se modifica el contenido\n");
     printf("con un 2 y se muestra\n");
-    (*pNumero).set_Numero(2);
+    (*pNumero).set_ClaseNumero(2);
     pNumero->pintar(); // Otra forma --> (*pNumero).pintar();
 
     // destructor del constructor lanzado al crear *pNumero
@@ -69,19 +69,19 @@ void BloqueSegundo()
     printf("Nota, se recorren todos los constructores de las clases en que se base\n");
     printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
-    DerivadaNumero Segundo;
-    Segundo.set_Numero(2);
-    Segundo.set_DerivadaNumero(3);
+    ClaseDerivadaNumero Segundo;
+    Segundo.set_ClaseNumero(2);
+    Segundo.set_ClaseDerivadaNumero(3);
     printf("Se almacenan los valores 2 y 3 con los métodos set y se muestran con pintartodo\n");
     Segundo.pintartodo();
 
-    printf("Se inicializa con 5 en la clase derivada y almacena 4 con el método set\n");
-    DerivadaNumero Tercero(5);
-    Tercero.set_Numero(4);
+    printf("Se inicializa con 5 en la clase derivada y se almacena 4 con el método set\n");
+    ClaseDerivadaNumero Tercero(5);
+    Tercero.set_ClaseNumero(4);
     Tercero.pintartodo();
 
-    printf("Se inicializan el objeto con valores 6 y 7, y y se muestra con el método pintartodo\n");
-    DerivadaNumero Cuarto(6,7);
+    printf("Se inicializan el objeto con valores 6 y 7, y muestra con el método pintartodo\n");
+    ClaseDerivadaNumero Cuarto(6,7);
     Cuarto.pintartodo();
 
     // ultimo destructor automático
@@ -93,17 +93,17 @@ void BloqueTercero()
     system("clear");
     printf("\t\e[0;33mBloque 3º Clase Derivada (Punteros, Funciones)\e[0m\n");
     printf("Se crean un objeto de clase derivada por puntero a clase derivada:\n");
-    printf("\t\t\t\e[0;31m-->\e[0;36mDerivadaNumero *pObjeto = new DerivadaNumero;\e[0m\n");
+    printf("\t\t\e[0;31m-->\e[0;36mClaseDerivadaNumero *pObjeto = new ClaseDerivadaNumero;\e[0m\n");
     printf("Se muestran los constructores\n");
-    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
-    DerivadaNumero *pObjeto = new DerivadaNumero;
+    // NombreClaseDelObjeto *NombreNuevaVariablePuntero = new NombreClaseDelObjeto
+    ClaseDerivadaNumero *pObjeto = new ClaseDerivadaNumero;
     printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
     printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
-    printf("Se llama a los métodos:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
-    printf("y:\t\t\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n");
-    (*pObjeto).set_Numero(1);    
-    (*pObjeto).set_DerivadaNumero(2);
+    printf("Se llama a los métodos:\t\e[0;36m(*pObjeto).set_ClaseNumero(1)\e[0m;\n");
+    printf("y:\t\t\t\e[0;36m(*pObjeto).set_ClaseDerivadaNumero(2);\e[0m\n");
+    (*pObjeto).set_ClaseNumero(1);    
+    (*pObjeto).set_ClaseDerivadaNumero(2);
     pObjeto->pintartodo(); // Otra forma --> (*pObjeto).pintartodo();
     printf("Llamada a función calculo(), se ejecuta en clase derivada:\n\t\e[0;36mint Resultado = pObjeto->calculo();\e[0m = ");
     int Resultado = pObjeto->calculo();
@@ -122,17 +122,17 @@ void BloqueCuarto()
     system("clear");
     printf("\t\e[0;33mBloque 4º Clase Derivada (Polimorfismo, Funciones Virtuales)\e[0m\n");
     printf("Se crean un objeto de clase base por puntero a clase derivada:\n");
-    printf("\t\t\t\e[0;31m-->\e[0;36mNumero *pObjeto = new DerivadaNumero;\e[0m\n");
+    printf("\t\t\e[0;31m-->\e[0;36mClaseNumero *pObjeto = new ClaseDerivadaNumero;\e[0m\n");
     printf("Se muestran los constructores\n");
-    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
-    Numero *pObjeto = new DerivadaNumero;
+    // NombreClaseDelObjeto *NombreNuevaVariablePuntero = new NombreClaseDelObjeto
+    ClaseNumero *pObjeto = new ClaseDerivadaNumero;
     printf("Al no inicializar el objeto, contendrá cualquier valor que exista\n");
     printf("en la memoria asignada\n");
     printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
-    printf("Se llama al método:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
-    (*pObjeto).set_Numero(1);
-    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n"); // <-- slicing 
-//  (*pObjeto).set_DerivadaNumero(2);
+    printf("Se llama al método:\t\e[0;36m(*pObjeto).set_ClaseNumero(1)\e[0m;\n");
+    (*pObjeto).set_ClaseNumero(1);
+    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_ClaseDerivadaNumero(2);\e[0m\n"); // <-- slicing 
+//  (*pObjeto).set_ClaseDerivadaNumero(2);
 
     pObjeto->pintar(); // Otra forma --> (*pObjeto).pintar();
     printf("Llamada a función calculo(), se ejecuta en clase base:\n\t\e[0;36mint Resultado = pObjeto->calculo();\e[0m = ");
@@ -152,15 +152,15 @@ void BloqueQuinto()
     system("clear");
     printf("\t\e[0;33mBloque 5º Clase Derivada (Polimorfismo, Dynamic_cast)\e[0m\n");
     printf("Se crean un objeto de clase base por puntero a clase derivada:\n");
-    printf("\t\t\t\e[0;31m-->\e[0;36mNumero *pObjeto = new DerivadaNumero;\e[0m\n");
+    printf("\t\t\e[0;31m-->\e[0;36mClaseNumero *pObjeto = new ClaseDerivadaNumero;\e[0m\n");
     printf("Se muestran los constructores\n");
-    // NombreClaseDelObjeto *NombreVariablePuntero = new NombreClaseDelObjeto
-    Numero *pObjeto = new DerivadaNumero;
+    // NombreClaseDelObjeto *NombreNuevaVariablePuntero = new NombreClaseDelObjeto
+    ClaseNumero *pObjeto = new ClaseDerivadaNumero;
     printf("pObjeto = \t\t\e[0;33m%p\e[0m\n", pObjeto);
-    printf("Se llama al método:\t\e[0;36m(*pObjeto).set_Numero(1)\e[0m;\n");
-    (*pObjeto).set_Numero(1);
-    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_DerivadaNumero(2);\e[0m\n");
-//  (*pObjeto).set_DerivadaNumero(2);
+    printf("Se llama al método:\t\e[0;36m(*pObjeto).set_ClaseNumero(1)\e[0m;\n");
+    (*pObjeto).set_ClaseNumero(1);
+    printf("\e[0;31mError compilador-->\e[0m:\t\e[0;36m(*pObjeto).set_ClaseDerivadaNumero(2);\e[0m\n");
+//  (*pObjeto).set_ClaseDerivadaNumero(2);
 
     /*
     Las conversiones en sentido descendente se denominan downcast, y las contrarias upcast
@@ -175,22 +175,22 @@ void BloqueQuinto()
     */
 
     printf("\nPara poder acceder a métodos de la clase derivada se utiliza dynamic_cast:\n");
-    printf("\e[0;36mDerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);\e[0m\n");
-    // NombreClaseDelObjeto *NombreVariablePuntero = dynamic_cast<NombreClaseDelObjeto *> NombreDelObjeto
-    DerivadaNumero *pClaseDerivada = dynamic_cast<DerivadaNumero *> (pObjeto);  // usando punteros
+    printf("\e[0;36mClaseDerivadaNumero *pClaseDerivada =\n\t\t\tdynamic_cast<ClaseDerivadaNumero *> (pObjeto);\e[0m\n");
+    // NombreClaseDelObjeto *NombreNuevaVariablePuntero = dynamic_cast<NombreClaseDelObjeto *> NombreDelObjeto
+    ClaseDerivadaNumero *pClaseDerivada = dynamic_cast<ClaseDerivadaNumero *> (pObjeto);  // usando punteros
     printf("Ya podemos llamar a los métodos de la clase derivada usando punteros:\n");
-    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->set_DerivadaNumero(2);\e[0m\n");
-    pClaseDerivada->set_DerivadaNumero(2);  // usando punteros
+    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->set_ClaseDerivadaNumero(2);\e[0m\n");
+    pClaseDerivada->set_ClaseDerivadaNumero(2);  // usando punteros
     printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada->pintartodo();\e[0m\n");
     pClaseDerivada->pintartodo();  // usando punteros
 
 
-    printf("\e[0;36mDerivadaNumero &pClaseDerivada1 = dynamic_cast<DerivadaNumero &> (*pObjeto);\e[0m\n");
-    // NombreClaseDelObjeto &NombreVariablePuntero = dynamic_cast<NombreClaseDelObjeto &> *NombreDelObjeto
-    DerivadaNumero &pClaseDerivada1 = dynamic_cast<DerivadaNumero &> (*pObjeto);  // usando referencias    
+    printf("\e[0;36mClaseDerivadaNumero &pClaseDerivada1 =\n\t\t\tdynamic_cast<ClaseDerivadaNumero &> (*pObjeto);\e[0m\n");
+    // NombreClaseDelObjeto &NombreNuevaVariableReferencia = dynamic_cast<NombreClaseDelObjeto &> *NombreDelObjeto
+    ClaseDerivadaNumero &pClaseDerivada1 = dynamic_cast<ClaseDerivadaNumero &> (*pObjeto);  // usando referencias    
     printf("Ya podemos llamar a los métodos de la clase derivada usando referencias:\n");
-    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada1.set_DerivadaNumero(2);\e[0m\n");
-    pClaseDerivada1.set_DerivadaNumero(3);  // usando referencias
+    printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada1.set_ClaseDerivadaNumero(2);\e[0m\n");
+    pClaseDerivada1.set_ClaseDerivadaNumero(3);  // usando referencias
     printf("\e[0;31m\t\t\t\e[0;36mpClaseDerivada1.pintartodo();\e[0m\n");
     pClaseDerivada1.pintartodo();  // usando referencias
 
