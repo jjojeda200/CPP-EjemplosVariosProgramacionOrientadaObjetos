@@ -1,7 +1,7 @@
 /*
     José Juan Ojeda Granados, 19-01-2022
     POO desde CPP
-    * dynamic_cast se usa casi exclusivamente para gestionar polimorfismo. Puedes convertir un puntero o referencia de un tipo polimórfico a cualquier otro tipo de clase (un tipo polimórfico tiene al menos una función virtual, declarada o heredada)
+    * dynamic_cast se usa casi exclusivamente para gestionar polimorfismo. Puedes convertir un puntero o referencia de un tipo polimórfico a cualquier otro tipo de clase (un tipo polimórfico tiene al menos una función virtual, declarada o por herencia)
 
     Convierte:
     *              <Clase Derivada                                        > (Clase Base)
@@ -16,26 +16,26 @@
 
 struct A
 {
-    virtual void test1() { printf("\e[0;34mTest1 en A\e[0m Virtual\n"); } // Al ser Virtual ejecuta la derivada
-    virtual void test2() { printf("\e[0;34mTest2 en A\e[0m Virtual\n"); }
-    void test3() { printf("\e[0;34mTest3 en A\e[0m\n"); }
+    virtual void test1() { printf("\e[0;34mTest1 en A\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
+    virtual void test2() { printf("\e[0;34mTest2 en A\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
+    void test3() { printf("\e[0;34mTest3 en A\e[0m\n"); } // No virtual --> Ejecuta este método
 };
 
 struct B : A
 {
-    virtual void test1() { printf("\e[0;35mTest1 en B\e[0m Virtual\n"); } // Al ser Virtual se ejecuta la derivada
-    void test2() { printf("\e[0;35mTest2 en B\e[0m\n"); }
-    void test3() { printf("\e[0;35mTest3 en B\e[0m\n"); }
-    virtual void test4() { printf("\e[0;35mTest4 en B\e[0m Virtual\n"); }
-    void test5() { printf("\e[0;35mTest5 en B\e[0m\n"); }
+    virtual void test1() { printf("\e[0;35mTest1 en B\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
+    void test2() { printf("\e[0;35mTest2 en B\e[0m\n"); } // Virtual por herencia --> Ejecuta método clase derivada
+    void test3() { printf("\e[0;35mTest3 en B\e[0m\n"); } // No virtual --> Ejecuta este método
+    virtual void test4() { printf("\e[0;35mTest4 en B\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
+    void test5() { printf("\e[0;35mTest5 en B\e[0m\n"); } // 
 };
 
 struct C : B
 {
-    void test1() { printf("\e[0;36mTest1 en C\e[0m\n"); }
-    void test2() { printf("\e[0;36mTest2 en C\e[0m\n"); }
+    void test1() { printf("\e[0;36mTest1 en C\e[0m\n"); } // Virtual por herencia
+    void test2() { printf("\e[0;36mTest2 en C\e[0m\n"); } // Virtual por herencia
     void test3() { printf("\e[0;36mTest3 en C\e[0m\n"); }
-    void test4() { printf("\e[0;36mTest4 en C\e[0m\n"); }
+    void test4() { printf("\e[0;36mTest4 en C\e[0m\n"); } // Virtual por herencia
 };
 
 void Globaltest(A& a)
@@ -110,10 +110,14 @@ int main()
         pObjetoBA->test2();
         printf("Llamada función: pObjetoBA->test3();\t\t(*)\t");
         pObjetoBA->test3();
+        printf("Llamada función: pObjetoBA->test4();\t\t\t");
+        pObjetoBA->test4();
+        printf("Llamada función: pObjetoBA->test5();\t\t(*)\t");
+        pObjetoBA->test5();
     }
     
     printf("\nConversión dinámica: B *pObjetoBCA = dynamic_cast<B*>(pObjetoC_ClaseA);\n");
-    B *pObjetoBCA = dynamic_cast<C*>(pObjetoC_ClaseA);
+    B *pObjetoBCA = dynamic_cast<B*>(pObjetoC_ClaseA);
     printf("Dirección pObjetoBCA\t\t\t\t\t\e[0;31m%p\e[0m\n", pObjetoBCA);
 
     printf("\nConversión dinámica: C *pObjetoCA = dynamic_cast<C*>(pObjetoC_ClaseA);\n");
@@ -127,6 +131,10 @@ int main()
         pObjetoCA->test2();
         printf("Llamada función: pObjetoCA->test3();\t\t(**)\t");
         pObjetoCA->test3();
+        printf("Llamada función: pObjetoCA->test4();\t\t\t");
+        pObjetoCA->test4();
+        printf("Llamada función: pObjetoCA->test5();\t\t(**)\t");
+        pObjetoCA->test5();
     }
 
     printf("\nConversión dinámica: C *pObjetoCB = dynamic_cast<C*>(pObjetoC_ClaseB);\n");
@@ -140,33 +148,26 @@ int main()
         pObjetoCB->test2();
         printf("Llamada función: pObjetoCB->test3();\t\t(***)\t");
         pObjetoCB->test3();
+        printf("Llamada función: pObjetoCB->test4();\t\t(***)\t");
+        pObjetoCB->test4();
+        printf("Llamada función: pObjetoCB->test5();\t\t(***)\t");
+        pObjetoCB->test5();
     }
 
-    printf("\nConversión dinámica: C *pObjetoCBA = dynamic_cast<C*>(pObjetoB_ClaseA);\n");
-    C *pObjetoCBA = dynamic_cast<C*>(pObjetoB_ClaseA);
-    printf("Dirección pObjetoC\t\t\t\e[0;31m%p\e[0m\n", pObjetoCBA);
-
-/*
-    printf("\nConversión dinámica: C *pObjetoCBA = dynamic_cast<C*>(pObjetoB_ClaseA);\n");
-    C *pObjetoCBA = dynamic_cast<C*>(pObjetoB_ClaseA);
-    printf("Dirección pObjetoC\t\t\t\e[0;31m%p\e[0m\n", pObjetoCBA);
- 
-    printf("\nConversión dinámica: C *pObjetoCA = dynamic_cast<C *>(pObjetoC_ClaseB);\n");
-    C *pObjetoCA = dynamic_cast<C *>(pObjetoC_ClaseA);
-
-    printf("Dirección pObjetoCA\t\t\t\t\t\e[0;31m%p\e[0m\n", pObjetoCA);
-    if (pObjetoCA)
+    printf("\nConversión dinámica: C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);\n");
+    C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);
+    printf("Dirección pObjetoC\t\t\t\e[0;31m%p\e[0m\n", pObjeto);
+    if (pObjeto)
     {
         printf("Llamada función: pObjetoC->test1();\t");
-        pObjetoCA->test1();
+        pObjeto->test1();
         printf("Llamada función: pObjetoC->test2();\t");
-        pObjetoCA->test2();
+        pObjeto->test2();
     }
     else
     {
-        printf("El valor de una conversión con errores al tipo de puntero es NULL\n\n");
+        printf("Conversión incompatible, el puntero es NULL\n\n");
     }
- */
 
     pObjetoB_ClaseA = nullptr;
     delete pObjetoB_ClaseA;
@@ -176,13 +177,17 @@ int main()
     delete pObjetoC_ClaseB;
     pObjetoBA = nullptr;
     delete pObjetoBA;
+
+    pObjetoBCA = nullptr;
+    delete pObjetoBCA;
+
     pObjetoCA = nullptr;
     delete pObjetoCA;
     pObjetoCB = nullptr;
     delete pObjetoCB;
 
-    pObjetoCBA = nullptr;
-    delete pObjetoCBA;
+    pObjeto = nullptr;
+    delete pObjeto;
     /*
         C ConStack;
         Globaltest(ConStack);
