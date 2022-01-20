@@ -112,7 +112,7 @@ int main()
         pObjetoBA->test3();
         printf("Llamada función: pObjetoBA->test4();\t\t\t");
         pObjetoBA->test4();
-        printf("Llamada función: pObjetoBA->test5();\t\t(*)\t");
+        printf("Llamada función: pObjetoBA->test5();\t\t(--)\t");
         pObjetoBA->test5();
     }
     
@@ -133,7 +133,7 @@ int main()
         pObjetoCA->test3();
         printf("Llamada función: pObjetoCA->test4();\t\t\t");
         pObjetoCA->test4();
-        printf("Llamada función: pObjetoCA->test5();\t\t(**)\t");
+        printf("Llamada función: pObjetoCA->test5();\t\t(--)\t");
         pObjetoCA->test5();
     }
 
@@ -148,9 +148,9 @@ int main()
         pObjetoCB->test2();
         printf("Llamada función: pObjetoCB->test3();\t\t(***)\t");
         pObjetoCB->test3();
-        printf("Llamada función: pObjetoCB->test4();\t\t(***)\t");
+        printf("Llamada función: pObjetoCB->test4();\t\t\t");
         pObjetoCB->test4();
-        printf("Llamada función: pObjetoCB->test5();\t\t(***)\t");
+        printf("Llamada función: pObjetoCB->test5();\t\t(--)\t");
         pObjetoCB->test5();
     }
 
