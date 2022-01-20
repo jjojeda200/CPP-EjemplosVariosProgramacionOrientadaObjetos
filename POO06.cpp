@@ -27,7 +27,7 @@ struct B : A
     void test2() { printf("\e[0;35mTest2 en B\e[0m\n"); } // Virtual por herencia --> Ejecuta método clase derivada
     void test3() { printf("\e[0;35mTest3 en B\e[0m\n"); } // No virtual --> Ejecuta este método
     virtual void test4() { printf("\e[0;35mTest4 en B\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
-    void test5() { printf("\e[0;35mTest5 en B\e[0m\n"); } // 
+    void test5() { printf("\e[0;35mTest5 en B\e[0m\n"); } // No virtual --> Ejecuta este método
 };
 
 struct C : B
@@ -36,6 +36,7 @@ struct C : B
     void test2() { printf("\e[0;36mTest2 en C\e[0m\n"); } // Virtual por herencia
     void test3() { printf("\e[0;36mTest3 en C\e[0m\n"); }
     void test4() { printf("\e[0;36mTest4 en C\e[0m\n"); } // Virtual por herencia
+    void test5() { printf("\e[0;36mTest5 en C\e[0m\n"); } 
 };
 
 void Globaltest(A& a)
@@ -90,11 +91,12 @@ int main()
     pObjetoC_ClaseA->test3();
     printf("Llamada función: pObjetoC_ClaseB->test3();\t(***)\t");
     pObjetoC_ClaseB->test3();
-    printf("\n\e[0;33mLlamadas a función test4 no se puede realizar al no existir en la Clase A\e[0m\n");
+
+    printf("\n\e[0;33mLlamadas a funciones test4 y test5 no se puede realizar, no existen en Clase A\e[0m\n");
     printf("\e[0;33mSalvo en el objeto C declarado sobre la Clase B\e[0m\n");
     printf("Llamada función: pObjetoC_ClaseB->test4();\t\t");
     pObjetoC_ClaseB->test4();
-    printf("Llamada función: pObjetoC_ClaseB->test5();\t\t");
+    printf("Llamada función: pObjetoC_ClaseB->test5();\t(-)\t");
     pObjetoC_ClaseB->test5();
 
 //********************************************************************************
@@ -112,7 +114,7 @@ int main()
         pObjetoBA->test3();
         printf("Llamada función: pObjetoBA->test4();\t\t\t");
         pObjetoBA->test4();
-        printf("Llamada función: pObjetoBA->test5();\t\t(--)\t");
+        printf("Llamada función: pObjetoBA->test5();\t\t\t");
         pObjetoBA->test5();
     }
     
@@ -133,7 +135,7 @@ int main()
         pObjetoCA->test3();
         printf("Llamada función: pObjetoCA->test4();\t\t\t");
         pObjetoCA->test4();
-        printf("Llamada función: pObjetoCA->test5();\t\t(--)\t");
+        printf("Llamada función: pObjetoCA->test5();\t\t\t");
         pObjetoCA->test5();
     }
 
@@ -150,21 +152,14 @@ int main()
         pObjetoCB->test3();
         printf("Llamada función: pObjetoCB->test4();\t\t\t");
         pObjetoCB->test4();
-        printf("Llamada función: pObjetoCB->test5();\t\t(--)\t");
+        printf("Llamada función: pObjetoCB->test5();\t\t(-)\t");
         pObjetoCB->test5();
     }
 
     printf("\nConversión dinámica: C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);\n");
     C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);
     printf("Dirección pObjetoC\t\t\t\e[0;31m%p\e[0m\n", pObjeto);
-    if (pObjeto)
-    {
-        printf("Llamada función: pObjetoC->test1();\t");
-        pObjeto->test1();
-        printf("Llamada función: pObjetoC->test2();\t");
-        pObjeto->test2();
-    }
-    else
+    if (!pObjeto)
     {
         printf("Conversión incompatible, el puntero es NULL\n\n");
     }
@@ -175,12 +170,11 @@ int main()
     delete pObjetoC_ClaseA;
     pObjetoC_ClaseB = nullptr;
     delete pObjetoC_ClaseB;
+
     pObjetoBA = nullptr;
     delete pObjetoBA;
-
     pObjetoBCA = nullptr;
     delete pObjetoBCA;
-
     pObjetoCA = nullptr;
     delete pObjetoCA;
     pObjetoCB = nullptr;
