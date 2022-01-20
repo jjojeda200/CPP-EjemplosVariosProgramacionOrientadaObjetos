@@ -32,7 +32,7 @@ POO05.cpp: POO desde CPP Clases polimorfismo, constructor, destructor, métodos 
 
 18-01-2022
 
-POO06.cpp: POO desde CPP Clases polimorfismo, virtual, dynamic_cast...
+POO06.cpp: POO desde CPP Clases polimorfismo, función virtual, dynamic_cast...
 
 19-01-2022
 
