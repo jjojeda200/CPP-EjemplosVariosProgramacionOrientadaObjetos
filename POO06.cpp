@@ -14,20 +14,23 @@
 
 struct A
 {
-    virtual void test() { printf("\e[0;34mTest en A\e[0m\n"); }
-    virtual void test2() { printf("\e[0;35mTest2 en A\e[0m\n"); }
+    virtual void test1() { printf("\e[0;34mTest en A\e[0m\n"); }
+    virtual void test2() { printf("\e[0;34mTest2 en A\e[0m\n"); }
+    void test3() { printf("\e[0;34mTest3 en A\e[0m\n"); }
 };
 
 struct B : A
 {
-    virtual void test() { printf("\e[0;35mTest en B\e[0m\n"); } // Al ser Virtual siempre se ejecuta la derivada
+    virtual void test1() { printf("\e[0;35mTest en B\e[0m\n"); } // Al ser Virtual se ejecuta la derivada
     void test2() { printf("\e[0;35mTest2 en B\e[0m\n"); }
+    void test3() { printf("\e[0;35mTest3 en B\e[0m\n"); }
 };
 
 struct C : B
 {
-    virtual void test() { printf("\e[0;36mTest en C\e[0m\n"); } // Al ser Virtual siempre se ejecuta la derivada
+    virtual void test1() { printf("\e[0;36mTest en C\e[0m\n"); } // Al ser Virtual ejecuta la derivada
     void test2() { printf("\e[0;36mTest2 en C\e[0m\n"); }
+    void test3() { printf("\e[0;36mTest3 en C\e[0m\n"); }
 };
 
 void Globaltest(A& a)
@@ -50,16 +53,19 @@ int main()
     A *pObjetoC_ClaseA = new C;
     printf("Dirección de Instancia: A *pObjetoC_ClaseA = new C;\t\e[0;31m%p\e[0m\n", pObjetoC_ClaseA);
 
-    printf("Llamada función: pObjetoB_ClaseA->test();\t\t");
-    pObjetoB_ClaseA->test();
-    printf("Llamada función: pObjetoC_ClaseA->test();\t\t");
-    pObjetoC_ClaseA->test();
 //********************************************************************************
+    printf("\nFunción test1 ES virtual en la Clase A\n");
+    printf("Llamada función: pObjetoB_ClaseA->test1();\t\t");
+    pObjetoB_ClaseA->test1();
+    printf("Llamada función: pObjetoC_ClaseA->test1();\t\t");
+    pObjetoC_ClaseA->test1();
+    printf("\nFunción test2 NO es virtual en la Clase A\n");
     printf("Llamada función: pObjetoB_ClaseA->test2();\t\t");
     pObjetoB_ClaseA->test2();
     printf("Llamada función: pObjetoC_ClaseA->test2();\t\t");
     pObjetoC_ClaseA->test2();
     printf("Llamadas a las funciones test2 no se puede al no existir en la Clase A\n\n");
+//********************************************************************************
     
     printf("Conversión dinámica: B *pObjetoB = dynamic_cast<B *>(pObjetoC_ClaseA);\n");
     B *pObjetoB = dynamic_cast<B *>(pObjetoC_ClaseA);
@@ -67,8 +73,8 @@ int main()
     printf("Dirección pObjetoB\t\t\t\t\t\e[0;31m%p\e[0m\n", pObjetoB);
     if (pObjetoB)
     {
-        printf("Llamada función: pObjetoB->test();\t\t\t");
-        pObjetoB->test();
+        printf("Llamada función: pObjetoB->test1();\t\t\t");
+        pObjetoB->test1();
         printf("Llamada función: pObjetoB->test2();\t\t\t");
         pObjetoB->test2();
     }
@@ -79,8 +85,8 @@ int main()
     printf("Dirección pObjetoC\t\t\t\e[0;31m%p\e[0m\n", pObjetoC);
     if (pObjetoC) 
     {
-        printf("Llamada función: pObjetoC->test();\t");
-        pObjetoC->test();
+        printf("Llamada función: pObjetoC->test1();\t");
+        pObjetoC->test1();
         printf("Llamada función: pObjetoC->test2();\t");
         pObjetoC->test2();
     }
