@@ -32,4 +32,8 @@ POO05.cpp: POO desde CPP Clases polimorfismo, constructor, destructor, métodos 
 
 18-01-2022
 
-POO06.cpp: POO desde CPP Clases abstractas, Clase interfaz, Tipos de polimorfismo, Destructores virtuales
+POO06.cpp: dynamic_cast... cuando una instancia/objeto de una clase base es realmente una instancia/objeto de una clase derivada. Típicamente en funciones virtuales.
+
+19-01-2022
+
+POO07.cpp: POO desde CPP Clases abstractas, Clase interfaz, Tipos de polimorfismo, Destructores virtuales
