@@ -16,6 +16,8 @@
 
 struct A
 {
+    // A() { printf("\e[0;34mConstructor A\e[0m\n");}
+    // ~A() { printf("\e[0;34mDestructor A\e[0m\n");}
     virtual void test1() { printf("\e[0;34mTest1 en A\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
     virtual void test2() { printf("\e[0;34mTest2 en A\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
     void test3() { printf("\e[0;34mTest3 en A\e[0m\n"); } // No virtual --> Ejecuta este método
@@ -23,6 +25,8 @@ struct A
 
 struct B : A
 {
+    // B() { printf("\e[0;35mConstructor B\e[0m\n");}
+    // ~B() { printf("\e[0;35mDestructor B\e[0m\n");}
     virtual void test1() { printf("\e[0;35mTest1 en B\e[0m\n"); } // Virtual --> Ejecuta método clase derivada
     void test2() { printf("\e[0;35mTest2 en B\e[0m\n"); } // Virtual por herencia --> Ejecuta método clase derivada
     void test3() { printf("\e[0;35mTest3 en B\e[0m\n"); } // No virtual --> Ejecuta este método
@@ -32,6 +36,8 @@ struct B : A
 
 struct C : B
 {
+    // C() { printf("\e[0;36mConstructor C\e[0m\n");}
+    // ~C() { printf("\e[0;36mDestructor C\e[0m\n");}
     void test1() { printf("\e[0;36mTest1 en C\e[0m\n"); } // Virtual por herencia
     void test2() { printf("\e[0;36mTest2 en C\e[0m\n"); } // Virtual por herencia
     void test3() { printf("\e[0;36mTest3 en C\e[0m\n"); }
@@ -112,10 +118,10 @@ int main()
         pObjetoBA->test2();
         printf("Llamada función: pObjetoBA->test3();\t\t(*)\t");
         pObjetoBA->test3();
-        printf("Llamada función: pObjetoBA->test4();\t\t\t");
-        pObjetoBA->test4();
-        printf("Llamada función: pObjetoBA->test5();\t\t\t");
-        pObjetoBA->test5();
+        // printf("Llamada función: pObjetoBA->test4();\t\t\t");
+        // pObjetoBA->test4();
+        // printf("Llamada función: pObjetoBA->test5();\t\t\t");
+        // pObjetoBA->test5();
     }
     
     printf("\nConversión dinámica: B *pObjetoBCA = dynamic_cast<B*>(pObjetoC_ClaseA);\n");
@@ -133,10 +139,10 @@ int main()
         pObjetoCA->test2();
         printf("Llamada función: pObjetoCA->test3();\t\t(**)\t");
         pObjetoCA->test3();
-        printf("Llamada función: pObjetoCA->test4();\t\t\t");
-        pObjetoCA->test4();
-        printf("Llamada función: pObjetoCA->test5();\t\t\t");
-        pObjetoCA->test5();
+        // printf("Llamada función: pObjetoCA->test4();\t\t\t");
+        // pObjetoCA->test4();
+        // printf("Llamada función: pObjetoCA->test5();\t\t\t");
+        // pObjetoCA->test5();
     }
 
     printf("\nConversión dinámica: C *pObjetoCB = dynamic_cast<C*>(pObjetoC_ClaseB);\n");
@@ -164,24 +170,11 @@ int main()
         printf("Conversión incompatible, el puntero es NULL\n\n");
     }
 
-    pObjetoB_ClaseA = nullptr;
+    // pObjetoB_ClaseA = nullptr; // <-- Si apunta a Null ¿Que libera el destructor? ;-)
     delete pObjetoB_ClaseA;
-    pObjetoC_ClaseA = nullptr;
     delete pObjetoC_ClaseA;
-    pObjetoC_ClaseB = nullptr;
     delete pObjetoC_ClaseB;
 
-    pObjetoBA = nullptr;
-    delete pObjetoBA;
-    pObjetoBCA = nullptr;
-    delete pObjetoBCA;
-    pObjetoCA = nullptr;
-    delete pObjetoCA;
-    pObjetoCB = nullptr;
-    delete pObjetoCB;
-
-    pObjeto = nullptr;
-    delete pObjeto;
     /*
         C ConStack;
         Globaltest(ConStack);
@@ -191,11 +184,3 @@ int main()
         Globaltest(BonStack);
     */
 }
-// #define BLACK   "\033[30m"      /* Black */
-// #define RED     "\033[31m"      /* Red */
-// #define GREEN   "\033[32m"      /* Green */
-// #define YELLOW  "\033[33m"      /* Yellow */
-// #define BLUE    "\033[34m"      /* Blue */
-// #define MAGENTA "\033[35m"      /* Magenta */
-// #define CYAN    "\033[36m"      /* Cyan */
-// #define WHITE   "\033[37m"      /* White */
