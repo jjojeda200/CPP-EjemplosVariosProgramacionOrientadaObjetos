@@ -45,14 +45,18 @@ struct C : B
     void test5() { printf("\e[0;36mTest5 en C\e[0m\n"); } 
 };
 
-void Globaltest(A& a)
+void Globaltest(A &a)
 {
     try
     {
-        C &c = dynamic_cast<C&>(a);
-        printf("in GlobalTest\n");
+        C &rObjeto = dynamic_cast<C&>(a);
+        printf("&a = \e[0;31m%p\e[0m : C &rObjeto = dynamic_cast<C&>(a);\t\e[0;31m%p\e[0m\n", a, rObjeto);
+        // printf("Llamada función: c.test1();\t\t\t\t\t");rObjeto.test1(); // <-- Solo por comprobación
     }
-    catch(std::bad_cast) { printf("Can't cast to C\n"); }
+    catch(std::bad_cast)
+    {
+        printf("\e[0;31mSe produjo una excepción\e[0m\n");
+    }
 }
 
 int main()
@@ -162,25 +166,35 @@ int main()
         pObjetoCB->test5();
     }
 
-    printf("\nConversión dinámica: C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);\n");
+    printf("\n\t\t\t\e[0;33mPrecauciones\e[0m\n");
+//********************************************************************************
+// Nota: si dynamic_cast no puede convertir de forma segura, la comprobación en tiempo de ejecución
+// hace que se produzca un error en la conversión, devolviendo 0 en lugar del puntero convertido.
+
+    printf("Conversión dinámica: C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);\n");
     C *pObjeto = dynamic_cast<C*>(pObjetoB_ClaseA);
-    printf("Dirección pObjetoC\t\t\t\e[0;31m%p\e[0m\n", pObjeto);
-    if (!pObjeto)
-    {
-        printf("Conversión incompatible, el puntero es NULL\n\n");
-    }
+    // printf("Dirección pObjeto\t\t\t\e[0;31m%p\e[0m\n", pObjeto);
+    if (!pObjeto)  printf("Conversión incompatible.\e[0;31m El puntero devuelto es \tnullptr\e[0m\n\n");
+
+//********************************************************************************
+// Nota (Error en ejecución): Una conversión con error al tipo de referencia produce una excepción
+// bad_cast excepción. Se produce una excepción.
+    
+    printf("Test Global\n");
+    
+    C C_Stack;
+    Globaltest(C_Stack);
+
+    // fallará porque B no sabe nada acerca de C
+    B B_Stack;
+    Globaltest(B_Stack);
+    printf("B no se puede convertir a C \e[0m\n");
+
+//********************************************************************************
 
     // pObjetoB_ClaseA = nullptr; // <-- Si apunta a Null ¿Que libera el destructor? ;-)
     delete pObjetoB_ClaseA;
     delete pObjetoC_ClaseA;
     delete pObjetoC_ClaseB;
 
-    /*
-        C ConStack;
-        Globaltest(ConStack);
-
-       // will fail because B knows nothing about C
-        B BonStack;
-        Globaltest(BonStack);
-    */
 }
