@@ -10,6 +10,8 @@
     dynamic_cast para funcionar necesita:
     * La clase base debe contener como minino un método virtual
 
+    Compilar con -lstdc++
+    gcc POO06.cpp -o POO06 -lstdc++ -fpermissive
 */
 #include <stdio.h>
 #include <iostream>
@@ -73,6 +75,12 @@ int main()
 
 //********************************************************************************
     /*
+    Manejo básico de punteros a zonas de memoria
+     * Para declarar variable apuntadora.
+     * Para desreferenciar, acceder directamente al contenido de una ubicación de memoria
+       almacenada en una variable puntero.
+     & Para mostrar la dirección de memoria de cualquier variable.
+
     El operador flecha (->) se utiliza cuando se dispone de la dirección de un objeto (en el puntero correspondiente), en lugar del nombre del objeto.
     Es más habitual utilizar el operador flecha que el operador punto.
     La sintaxis (*puntero).miembro es incómoda de leer y escribir, así que usa la sintaxis flecha (->) de manera que puntero->miembro es equivalente a (*puntero).miembro.

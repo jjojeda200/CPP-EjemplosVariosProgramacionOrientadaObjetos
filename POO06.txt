@@ -1,0 +1,49 @@
+Dirección de Instancia: A *pObjetoB_ClaseA = new B;     0x55555556c2c0
+Dirección de Instancia: A *pObjetoC_ClaseA = new C;     0x55555556c2e0
+Dirección de Instancia: B *pObjetoC_ClaseB = new C;     0x55555556c300
+
+    {void (A * const)} 0x555555555b1a <A::test1()>
+    {void (A * const)} 0x555555555b3a <A::test2()>
+    {void (A * const)} 0x555555555b5a <A::test3()>
+
+    {void (B * const)} 0x555555555b7a <B::test1()>
+    {void (B * const)} 0x555555555b9a <B::test2()>
+    {void (B * const)} 0x555555555bba <B::test3()>
+    {void (B * const)} 0x555555555bda <B::test4()>
+    {void (B * const)} 0x555555555bfa <B::test5()>
+
+    {void (C * const)} 0x555555555c1a <C::test1()>
+    {void (C * const)} 0x555555555c3a <C::test2()>
+    {void (C * const)} 0x555555555c5a <C::test3()>
+    {void (C * const)} 0x555555555c7a <C::test4()>
+    {void (C * const)} 0x555555555c9a <C::test5()>
+
+//*********************************************************************************************
+        Nota:Función test3 NO es virtual en A, B y C
+A::test3(A * const this)
+    printf("Llamada función: pObjetoB_ClaseA->test3();\t(*)\t");
+    0x55555556c2c0 pObjetoB_ClaseA->test3();   {void (A * const)} 0x555555555b5a <A::test3()>
+
+A::test3(A * const this)
+    printf("Llamada función: pObjetoC_ClaseA->test3();\t(**)\t");
+    0x55555556c2c0 pObjetoC_ClaseA->test3();   {void (A * const)} 0x555555555b5a <A::test3()>
+
+B::test3(B * const this)
+    printf("Llamada función: pObjetoC_ClaseB->test3();\t(***)\t");
+    0x55555556c300 pObjetoC_ClaseB->test3();   {void (B * const)} 0x555555555bba <B::test3()>
+//*********************************************************************************************
+        Nota:Conversión dinámica: B *pObjetoBA = dynamic_cast<B*>(pObjetoB_ClaseA)
+B::test3(B * const this)
+    printf("Llamada función: pObjetoBA->test3();\t\t(*)\t");
+    0x55555556c2c0 pObjetoBA->test3();         {void (B * const)} 0x555555555bba <B::test3()
+
+        Nota:Conversión dinámica: C *pObjetoCA = dynamic_cast<C*>(pObjetoC_ClaseA)
+C::test3(C * const this)
+    printf("Llamada función: pObjetoCA->test3();\t\t(**)\t");
+    0x55555556c2e0 pObjetoCA->test3();         {void (C * const)} 0x555555555c5a <C::test3()>
+
+        Nota:Conversión dinámica: C *pObjetoCB = dynamic_cast<C*>(pObjetoC_ClaseB)
+C::test3(C * const this)
+    printf("Llamada función: pObjetoCB->test5();\t\t(-)\t");
+    0x55555556c300 pObjetoCB->test5();     {void (C * const)} 0x555555555c5a <C::test3()>
+//*********************************************************************************************
