@@ -1,6 +1,6 @@
 /*
     José Juan Ojeda Granados, 10-01-2022
-    Primera aproximación a POO desde CPP
+    Aproximación a POO desde CPP
 
     Creación básica de una clase llamada Numero
         * Definición atributos/características
@@ -16,9 +16,10 @@
 class Numero
 {
 public:
-    Numero();
-    ~Numero();
-    int obtenerNumero();
+    Numero(); // Constructor
+    ~Numero(); // Destructor
+    // Métodos
+    int obtenerNumero() const; // <-- impide la realización de modificaciones en el método
     void configurarNumero(int numero);
     void pintar();
 
@@ -26,18 +27,19 @@ private:
     int elNumero;
 };
 
-Numero::Numero() // Constructor
+Numero::Numero()
 {
     printf("\e[0;37mConstructor ...\e[0m\n");
 }
 
-Numero::~Numero() // Destructor
+Numero::~Numero()
 {
     printf("\e[0;37mDestructor ...\e[0m\n");
 }
 
-int Numero::obtenerNumero() // Metodo
+int Numero::obtenerNumero() const // <-- impide la realización de modificaciones en el método 
 {
+    // elNumero = 80; // Error al compilar: assignment of member ‘Numero::elNumero’ in read-only object
     return elNumero;
 }
 
@@ -61,6 +63,8 @@ int main(int argc, char *argv[])
     printf("Se crea el objeto Primer, se almacena el número 10 y se muestra\n");
     Primer.configurarNumero(10);
     Primer.pintar();
+    // int varA = Primer.obtenerNumero(); // Para comprobar al desactivar const en el método
+    // printf("varA = %d", varA);
 
     printf("\nSe crea el objeto por puntero en heap, y se muestra la dirección\n");
     // Crea el objeto por puntero y lanza el constructor, se cierra con el delete
@@ -78,6 +82,7 @@ int main(int argc, char *argv[])
     sintaxis flecha (->) de manera que puntero->miembro es equivalente a (*puntero).miembro.
     Ambas opciones son validas pero se aconseja usar el operador flecha (->).
     */
+    printf("Se llama al método guardar numero por puntero y se modifica a 40, se muestra\n");
     pNumero->configurarNumero(40);
     pNumero->pintar();
 
