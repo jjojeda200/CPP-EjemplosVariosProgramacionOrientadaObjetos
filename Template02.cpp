@@ -24,28 +24,27 @@ using std::string;
 
 // ***************************************************************************
 // Plantillas de clase
-template <class T>
-class miPar
+template <class TipoGenerico>
+class Datos
 {
-    T a, b;
 
 public:
-    miPar(T primero, T segundo)
+    Datos(TipoGenerico varX)
     {
-        a = primero;
-        b = segundo;
+        cout << varX << " es de tipo númerico. \n";
     }
-    T getmax();
 };
 
-template <class T>
-T miPar<T>::getmax()
+template <>
+class Datos<string>
 {
-    T retval;
-    cout << "El mayor entre el par " << a << " y " << b << " es: \t";
-    retval = a > b ? a : b;
-    return retval;
-}
+
+public:
+    Datos(string varX)
+    {
+        cout << varX << " es de tipo cadena. \n";
+    }
+};
 
 // ***************************************************************************
 
@@ -54,9 +53,9 @@ int main()
     system("clear");
     std::cout << "\e[0;33mMétodo mostrar mayor entre dos números mismo tipo\e[0m\n";
     std::cout << "\e[0;36mTipo de dato, por convenio se usa \e[0;33mT\e[0m\n";
-// Plantillas de clase
-    miPar<int> miObjeto(100, 75);
-    cout << miObjeto.getmax() << '\n';
 
+    Datos<int> numeroEntero(10);
+    Datos<float> numeroDeciaml(10.5);
+    Datos<string> cadena("texto");
     return 0;
 }
