@@ -4,7 +4,7 @@
 
     Creación básica de una clase llamada cPunto
         * Definición atributos/características
-        * Definición de métodos
+        * Definición de métodos get, set
         * Definición de constructor
         * Herencias Multimples
 
@@ -33,16 +33,10 @@ void cPunto::set(int auxX = 0, int auxY = 0)
     varY = auxY;
 };
 
-int cPunto::getX()
-{
-    return varX;
-}
-int cPunto::getY()
-{
-    return varY;
-}
+int cPunto::getX() { return varX; }
+int cPunto::getY() { return varY; }
 
-void cPunto::MostrarPunto()
+void cPunto::MostrarPunto() 
 {
     std::cout << "varX= " << varX << "\t";
     std::cout << "varY= " << varY << "\n";
@@ -50,24 +44,60 @@ void cPunto::MostrarPunto()
 
 //********************************************************************************
 
-class cPuntoDerivada : public cPunto
+class cRalla
 {
 private:
+    int varA, varB;
+
 public:
-    cPuntoDerivada() { printf("\e[0;33mConstructor cPuntoDerivada...\e[0m\n"); }
-    ~cPuntoDerivada() { printf("\e[0;33mDestructor cPuntoDerivada...\e[0m\n"); }
-    int getX();
+    cRalla(){ printf("\e[0;33mConstructor cRalla...\e[0m\n"); }
+    ~cRalla() { printf("\e[0;33mDestructor cRalla...\e[0m\n"); }
+    
+    void set(int, int);
+    int getA();
+    int getB();
+    void MostrarRalla();
+};
+
+void cRalla::set(int auxA = 0, int auxB = 0)
+{
+    varA = auxA;
+    varB = auxB;
+};
+
+int cRalla::getA() { return varA; }
+int cRalla::getB() { return varB; }
+
+void cRalla::MostrarRalla() 
+{
+    std::cout << "varA= " << varA << "\t";
+    std::cout << "varB= " << varB << "\n";
+}
+
+//********************************************************************************
+
+class cDerivada : public cPunto, public cRalla
+{
+private:
+    friend 
+public:
+    cDerivada() { printf("\e[0;33mConstructor cDerivada...\e[0m\n"); }
+    ~cDerivada() { printf("\e[0;33mDestructor cDerivada...\e[0m\n"); }
 };
 
 //********************************************************************************
 
-void MostrarPuntoDerivada(cPunto &auxPunto)
+void MostrarDerivada(cDerivada &auxPunto)
 {
     std::cout << "\nFunción Mostrar -->\e[0;36m auxPunto.MostrarPunto();\e[0m\n";
-    auxPunto.MostrarPunto();
+    auxPunto.cPunto::MostrarPunto();
+    std::cout << "\nFunción Mostrar -->\e[0;36m auxPunto.MostrarPunto();\e[0m\n";
+    auxPunto.cRalla::MostrarRalla();
     std::cout << "\nFunción Mostrar -->\e[0;36m cout << \"varX= \" << auxPunto.getX();\e[0m\n";
     std::cout << "varX= " << auxPunto.getX() << "\t";
     std::cout << "varY= " << auxPunto.getY() << "\n";
+    std::cout << "varA= " << auxPunto.getA() << "\t";
+    std::cout << "varB= " << auxPunto.getB() << "\n";
 }
 
 //********************************************************************************
@@ -76,17 +106,19 @@ int main()
 {
     system("clear");
 
-    cPunto objPunto0;
-    objPunto0.set(10, 20);
-    objPunto0.MostrarPunto();
+    cPunto objPunto;
+    objPunto.set(10, 20);
+    objPunto.MostrarPunto();
 
-    cPuntoDerivada objPunto1;
-    objPunto1.set(100);
-    objPunto1.MostrarPunto();
+    cRalla objRalla;
+    objRalla.set(50, 60);
+    objRalla.MostrarRalla();
 
-    MostrarPuntoDerivada(objPunto0);
-    MostrarPuntoDerivada(objPunto1);
+    cDerivada objDerivado;
+    objDerivado.cPunto::set(110,120);
+    objDerivado.cRalla::set(150,160);
 
-    std::cout << "Objeto0 varX * varY = " << objPunto0.getX() * objPunto0.getY() << "\n";
-    std::cout << "Objeto1 varX * varY = " << objPunto0.getX() * objPunto1.getY() << "\n";
+    MostrarDerivada(objDerivado);
+
+
 }

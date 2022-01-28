@@ -57,7 +57,6 @@ private:
 public:
     cPuntoDerivada() { printf("\e[0;33mConstructor cPuntoDerivada...\e[0m\n"); }
     ~cPuntoDerivada() { printf("\e[0;33mDestructor cPuntoDerivada...\e[0m\n"); }
-    int getX();
 };
 
 //********************************************************************************
@@ -88,6 +87,7 @@ int main()
     MostrarPuntoDerivada(objPunto0);
     MostrarPuntoDerivada(objPunto1);
 
+    std::cout << "\n";
     std::cout << "Objeto0 varX * varY = " << objPunto0.getX() * objPunto0.getY() << "\n";
     std::cout << "Objeto1 varX * varY = " << objPunto0.getX() * objPunto1.getY() << "\n";
 }
