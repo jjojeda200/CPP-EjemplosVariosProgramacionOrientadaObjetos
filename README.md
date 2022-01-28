@@ -52,4 +52,8 @@ IntroPOO02.cpp: Repaso creación básica de una clase: Definición de herencias 
 
 28-01-2022
 
-Template01.cpp: Standard Template Library (STL), Introducción a su uso en clases
+Template01.cpp: Standard Template Library (STL), Introducción básica a su uso en clases
+
+28-01-2022
+
+Template02.cpp: Standard Template Library (STL), Introducción plantillas especializadas en clases
