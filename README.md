@@ -34,6 +34,10 @@ POO05.cpp: POO desde CPP Clases polimorfismo, constructor, destructor, métodos 
 
 POO06.cpp: POO desde CPP Clases polimorfismo, función virtual, dynamic_cast...
 
+22-01-2022
+
+Template00.cpp: Standard Template Library (STL), Introducción a su uso en funciones
+
 26-01-2022
 
 IntroPOO00.cpp: Repaso creación básica de una clase: Definición atributos/características y Definición de métodos
@@ -44,4 +48,8 @@ IntroPOO01.cpp: Repaso creación básica de una clase: Definición de atributo p
 
 28-01-2022
 
-IntroPOO02.cpp: Repaso creación básica de una clase: Definición de herencias multiples 
+IntroPOO02.cpp: Repaso creación básica de una clase: Definición de herencias múltiples 
+
+28-01-2022
+
+Template01.cpp: Standard Template Library (STL), Introducción a su uso en clases
