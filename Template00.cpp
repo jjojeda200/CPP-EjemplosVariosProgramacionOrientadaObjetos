@@ -17,9 +17,7 @@
 #define Amarillo "\e[0;33m"
 #define Azul "\e[0;34m"
 #define Blanco "\e[0;37m"
-using std::cin;
 using std::cout;
-using std::endl;
 using std::string;
 
 // ***************************************************************************
