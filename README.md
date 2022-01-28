@@ -34,6 +34,14 @@ POO05.cpp: POO desde CPP Clases polimorfismo, constructor, destructor, métodos 
 
 POO06.cpp: POO desde CPP Clases polimorfismo, función virtual, dynamic_cast...
 
-19-01-2022
+26-01-2022
 
-POO07.cpp: POO desde CPP Clases abstractas, Clase interfaz, Tipos de polimorfismo, Destructores virtuales
+IntroPOO00.cpp: Repaso creación básica de una clase: Definición atributos/características y Definición de métodos
+
+27-01-2022
+
+IntroPOO01.cpp: Repaso creación básica de una clase: Definición de atributo privado, get y set, constructor, destructor, herencias Simple 
+
+28-01-2022
+
+IntroPOO02.cpp: Repaso creación básica de una clase: Definición de herencias multiples 

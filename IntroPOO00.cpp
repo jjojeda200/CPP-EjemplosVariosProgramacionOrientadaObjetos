@@ -1,11 +1,10 @@
 /*
-    José Juan Ojeda Granados, 27-01-2022
+    José Juan Ojeda Granados, 26-01-2022
     Primera aproximación a POO desde CPP
 
     Creación básica de una clase llamada cPunto
         * Definición atributos/características
         * Definición de métodos
-        * Definición de constructor
 
     Compilar con -lstdc++
 */
