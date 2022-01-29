@@ -68,7 +68,7 @@ void cRalla::set(int auxA = 0, int auxB = 0)
 int cRalla::getA() const { return varA; }
 int cRalla::getB() const
 {
-    //varB = 300;
+    //varB = 300; // <-- const no permite modificaciones
     return varB;
 }
 
