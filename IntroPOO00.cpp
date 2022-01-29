@@ -23,8 +23,9 @@ public:
     };
 };
 
-void MostrarPunto(cPunto auxPunto)
+void MostrarPunto(const cPunto auxPunto)
 {
+    // auxPunto.varX = 50; // <-- const no permite modificaciones
     std::cout << "varX= " << auxPunto.varX << "\t";
     std::cout << "varY= " << auxPunto.varY << "\n";
 }
