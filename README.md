@@ -57,3 +57,7 @@ Template01.cpp: Standard Template Library (STL), Introducción básica a su uso 
 28-01-2022
 
 Template02.cpp: Standard Template Library (STL), Introducción plantillas especializadas en clases
+
+02-02-2022
+
+IntroPOO03.cpp: Repaso creación básica de una clase: Manejo de objetos y métodos con/en vectores
